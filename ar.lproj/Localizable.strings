@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  etmam
+
+  Created by Ghada on 30/06/2022.
+  
+*/
+
+"Hello" = "مرحباً" ;
+"Good Morning" = "صباح الخير";
+"Good Afternoon" = "مساء الخير";
+"Good Evening" = "مساء الخير";
+
