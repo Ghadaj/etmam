@@ -13,14 +13,7 @@ struct SwiftUIView: View {
     @EnvironmentObject var dbProjects: projectDatabaseVM
     @EnvironmentObject var dbMeetings: meetingDatabaseVM
     @EnvironmentObject var dbUsers: userDatabaseVM
-    // Create Date
-    //let date = Date()
-
-   // let dateFormatter = DateFormatter()
-
-    // Set Date Format
-
-    // Convert Date to String
+ 
 
     var body: some View {
         

@@ -13,13 +13,16 @@ import Foundation
 
 struct MeetingCard: View {
     @EnvironmentObject var dbMeetings: meetingDatabaseVM
+    @EnvironmentObject var dbUsers: userDatabaseVM
+    @EnvironmentObject var dbOrg: orgDatabaseVM
+
    var meeting: Meeting
     @State var members : [String] = [""]
     @State var meetingMinutes : [String] = [""]
     @State var status = ["To Do","Done"]
     @State var selectedStatus = ""
     @State private var meetingMinuteArrayCheck = false
-
+    @State var meetingDate = Date()
     
     @State var startTime = Date()
     @State var endTime = Date()
@@ -31,12 +34,37 @@ struct MeetingCard: View {
     @State var meetingProject = ""
     @State var meetingRoom = ""
     @State var meetingProjectName = ""
+    @State var meetingCreator = ""
     @State private var textHeight: CGFloat = 40
     @State private var maxTextHeight: CGFloat = 10000000
+    @State var firstName = ""
+    @State var lastName = ""
+    @State var user = User(firstName: "nil", lastName: "nil", userJobTitle: "nil", userPhone: "nil", userEmail: "nil", userPermession: 5, userProjects: ["nil"], userTasks: ["nil"], userMeetings: ["nil"], userImage: "nil", userLineManger: "nil", userOrg: "nil")
     let columns = Array(repeating: GridItem(.flexible(minimum: 1, maximum: 1), spacing: 35), count: 5)
+    @State var showStack = false
+    func getLM(){
+            dbUsers.getUserName2(id: meeting.meetingCreator!){
+         (success) -> Void in
+             if success {
+                 getUser()
+                 firstName = dbUsers.firstName
+                 lastName = dbUsers.lastName
+        }}}
     
     
+    func getUser(){
+        dbUsers.getUser2(userID: meeting.meetingCreator!){
+         (success) -> Void in
+             if success {
+                 showStack = true
+                 user = dbUsers.user
+}
+    }}
+
     
+    func getProjectName(projectId: String) -> String{
+       return dbUsers.projects.first(where: { $0.id == projectId})?.projectName ?? "Personal"
+    }
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -44,8 +72,9 @@ struct MeetingCard: View {
     
     
     var body: some View {
-        
-        
+        let y = dbOrg.getMembers()
+
+        let x = getLM()
         
         Form{
             
@@ -53,11 +82,11 @@ struct MeetingCard: View {
             
             Section{
                 
-                TextField( "Title", text: $meetingTitle)
+                TextField( "Title".localized, text: $meetingTitle)
                 
                 
                 
-                TextView(placeholderText: "Meeting Agenda", text: $meetingAgenda,minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
+                TextView(placeholderText: "Meeting Agenda".localized, text: $meetingAgenda,minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
                     .frame(minHeight: self.textHeight, maxHeight: self.textHeight)
     
             }
@@ -68,42 +97,51 @@ struct MeetingCard: View {
                 
                 
                 HStack{
-//
-//                    Button(action: {isStartPickerVisible.toggle()}){
-                        Text("Starts")
+                    Image(systemName: "hourglass.tophalf.filled").foregroundColor(Color("blue"))
+                    Text("Starts At ".localized)
                         
 //                    }
 //                    if isStartPickerVisible{
                         DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
                             .labelsHidden().padding(.horizontal)
                             .accentColor(Color("blue"))
-//                    }
-                    Spacer()
-                    
-                    Image(systemName: "hourglass.tophalf.filled").foregroundColor(Color("blue"))
+
                     
                     
                 }
                 
                 HStack{
                     
-//                    Button(action: {isEndPickerVisible.toggle()}){
-                        Text("Ends  ")
-//                    }
-//                    if isEndPickerVisible{
+                    Image(systemName: "hourglass.bottomhalf.filled").foregroundColor(Color("blue"))
+                    Text("Ends At   ".localized)
+
                         DatePicker("", selection: $endTime, displayedComponents: .hourAndMinute)
                             .labelsHidden().padding(.horizontal)
                             .accentColor(Color("blue"))
-//                    }
-                    Spacer()
-                    Image(systemName: "hourglass.bottomhalf.filled").foregroundColor(Color("blue"))
+
+                  
+                   
                 }
                 HStack{
-                    Text("Status")
+                    
+                    Image(systemName: "calendar").foregroundColor(Color("blue"))
+                    Text("Date     ".localized)
+                    DatePicker("",
+                               selection: $meetingDate,
+                               displayedComponents: .date)
+                    .padding(.horizontal)
+                    .accentColor(Color("blue"))
+                    Spacer().padding()
+
+                  
+                   
+                }
+                HStack{
+                    Text("Status".localized)
                     Menu {
                         Picker(selection: $selectedStatus) {
                             ForEach(status, id:\.self) { value in
-                                Text(value)
+                                Text(value.localized)
                                     .tag(value)
                                    
                             }
@@ -114,7 +152,7 @@ struct MeetingCard: View {
                          Spacer()
 
                         statusIcon(status: selectedStatus)
-                            Text(selectedStatus).font(.title3).foregroundColor(Color("blue"))
+                            Text(selectedStatus.localized).foregroundColor(Color("blue"))
                         }
                     }
                     
@@ -131,28 +169,33 @@ struct MeetingCard: View {
                                 Projects(selectedProject: $meetingProject, selectedProjectName: $meetingProjectName)){
                     
                     
-                    Text("Project: ")
                     
-                    Text(meetingProjectName).foregroundColor(.gray)
-                    
-                }
-                
-                
-                
-                
-                
-                NavigationLink(destination:
-                                CardCell()) {
                     HStack{
-                        Image(systemName: "person").foregroundColor(Color("blue"))
-                        Text("Creator:")
-                        Spacer()
-                        Image(uiImage: imageWith(name: "Salem Nasser")!).resizable().frame(width:25 , height: 25)
-                        Text("Salem Nasser").foregroundColor(.gray)
-                    }
+                    Image(systemName: "align.vertical.top.fill").foregroundColor(Color("blue"))
+                    Text("Project: ".localized)
+                   
+                        Text(getProjectName(projectId: meetingProject).localized).foregroundColor(.gray)
+                    
+                }
                     
                 }
                 
+                
+                
+                if showStack{
+
+                NavigationLink(destination:
+                                OtherUsersProfile(user: user)) {
+                    HStack{
+                        Image(systemName: "person.fill").foregroundColor(Color("blue"))
+                        Text("Creator: ".localized)
+                        Image(uiImage: imageWith(name: "\(firstName) \(lastName)")!).resizable().frame(width:25 , height: 25)
+
+                        Text("\(firstName) \(lastName)").foregroundColor(.gray)
+                    }
+
+                }
+                }
                 
                 
                 NavigationLink(destination: OrgUsers ( selectedUsers: $members, navBarTitle: $meetingNavBarTitle)) {
@@ -161,9 +204,9 @@ struct MeetingCard: View {
                     HStack{
                         
                        
-                        Image(systemName: "person.badge.plus").foregroundColor(Color("blue"))
-                            Text("Members: ").foregroundColor(.black)
-                        Text("\(members.count)").foregroundColor(.gray)
+                        Image(systemName: "person.fill.badge.plus").foregroundColor(Color("blue"))
+                        Text("Users: ".localized)
+                        membersCapsule(members, bigArrayOfUsers: dbOrg.orgMembers).padding(.bottom,-50)
                             
                             
                            
@@ -180,27 +223,23 @@ struct MeetingCard: View {
                 
                 
                 HStack{
-                    
-                    Text("Meeting Link")
-                    Button(action: {
-                        isMeetingLinkVisible.toggle()}){
-                            Toggle("", isOn: $isMeetingLinkVisible)
-                        }
+                Image(systemName: "link").foregroundColor(Color("blue"))
+                Toggle("Meeting Link".localized, isOn: $isMeetingLinkVisible)
                 }
-                
-                
-                
-                
-                if isMeetingLinkVisible{
-                    TextView(placeholderText: "Meeting Link", text: $meetingLink, minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
-                        .frame(minHeight: self.textHeight, maxHeight: self.textHeight)
-                    
-                    
-                }
+            
+        
+        
+        
+        if isMeetingLinkVisible {
+            TextView(placeholderText: "Meeting Link".localized, text: $meetingLink,  minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
+                .frame(minHeight: self.textHeight, maxHeight: self.textHeight)
+               
+        
+        }
                 
                 HStack{
                     Image(systemName:"mappin.and.ellipse" ).foregroundColor(.gray)
-                    TextField( "Meeting Room", text: $meetingRoom)
+                    TextField( "Meeting Room".localized, text: $meetingRoom)
                 }
                 
             
@@ -209,8 +248,8 @@ struct MeetingCard: View {
                 {
                     
                     
-                   
-                        Text("Meeting Minutes").onAppear{
+                   Image(systemName: "pencil").foregroundColor(Color("blue"))
+                    Text("Meeting Minutes".localized).onAppear{
                             
                             meetingMinutes = meetingMinutes.filter({ $0 != ""   })
                             if meetingMinutes.isEmpty{
@@ -222,11 +261,10 @@ struct MeetingCard: View {
                 }
                 
                 HStack{
-                    Image(systemName: "paperclip").foregroundColor(.gray)
-                    Text("Attachments")
+                    Image(systemName: "paperclip").foregroundColor(Color("blue"))
+                    Text("Attachments".localized)
                     Spacer()
-                    Image(systemName: "plus").foregroundColor(Color("blue"))
-                    
+                    Image(systemName: "plus").foregroundColor(Color("gray"))
                 }
                 
                 
@@ -234,7 +272,7 @@ struct MeetingCard: View {
         }
         
         
-            .navigationTitle("Meeting")
+        .navigationTitle("Meeting".localized)
             .navigationBarTitleDisplayMode(.inline)
         
             .toolbar{
@@ -243,6 +281,7 @@ struct MeetingCard: View {
                         if meetingTitle != "" {
                             meeting.meetingTitle = meetingTitle
                             meeting.meetingRoom = meetingRoom
+                            meeting.meetingDate = meetingDate
                             meeting.meetingStartTime = startTime
                             meeting.meetingEndTime = endTime
                             meeting.meetingAgenda = meetingAgenda
@@ -251,13 +290,13 @@ struct MeetingCard: View {
                             meeting.meetingMembers = members
                             meeting.mom = meetingMinutes
                             meeting.zoomUrl = meetingLink
-                            
+                           // meeting.meetingCreator = meetingCreator
                             dbMeetings.updateMeeting(meeting)
                             presentationMode.wrappedValue.dismiss()
                             
                         }
                     }){
-                        Text("Save").foregroundColor(meetingTitle != "" ? Color("blue"): .gray)
+                        Text("Save".localized).foregroundColor(meetingTitle != "" ? Color("blue"): .gray)
                         
                     }
                 }
@@ -269,11 +308,7 @@ struct MeetingCard: View {
     
     
 }
-//struct MeetingCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MeetingCard(meeting: Meeting()
-//    }
-//}
+
 
 struct MeetingMinutes: View{
     @Binding var meetingMinutes : [String]
@@ -285,13 +320,13 @@ struct MeetingMinutes: View{
         Form{
             
             
-            TextView(placeholderText: "Call to order", text: $meetingMinutes[0], minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
+            TextView(placeholderText: "Title".localized, text: $meetingMinutes[0], minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
                 .frame(minHeight: self.textHeight, maxHeight: self.textHeight)
             
             
             ForEach((1..<meetingMinutes.count), id: \.self) {i in
                 
-                TextView(placeholderText: "Title", text: $meetingMinutes[i], minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
+                TextView(placeholderText: "Title".localized, text: $meetingMinutes[i], minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
                     .frame(minHeight: self.textHeight, maxHeight: self.textHeight)
             }
             Button(action: {
@@ -299,11 +334,11 @@ struct MeetingMinutes: View{
             }){
                 HStack{
                     Image(systemName: "plus")
-                    Text("Add")
+                    Text("Add".localized)
                 }
             }.foregroundColor(Color("blue"))
             
-                .navigationTitle("Meeting Minutes")
+                .navigationTitle("Meeting Minutes".localized)
             
         }
         

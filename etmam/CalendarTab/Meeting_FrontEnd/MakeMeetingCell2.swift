@@ -13,7 +13,8 @@ struct MakeMeetingCell2: View{
     @EnvironmentObject var dbMeetings: meetingDatabaseVM
     @EnvironmentObject var dbProjects: projectDatabaseVM
     @EnvironmentObject var dbUsers: userDatabaseVM
-    
+    @EnvironmentObject var dbOrg: orgDatabaseVM
+
     var meeting : Meeting
     let date = Date()
     
@@ -66,7 +67,7 @@ struct MakeMeetingCell2: View{
         Spacer()
         
               
-          membersCapsule(meeting.meetingMembers ?? [""], bigArrayOfUsers: dbUsers.users).padding()
+          membersCapsule(meeting.meetingMembers ?? [""], bigArrayOfUsers: dbOrg.orgMembers).padding()
           Spacer().frame(width: 30)
       }
         

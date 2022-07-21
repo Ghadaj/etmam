@@ -1,13 +1,128 @@
-/* 
+/*
   Localizable.strings
   etmam
 
   Created by Ghada on 30/06/2022.
   
 */
-
+//Greating Header
 "Hello" = "مرحباً" ;
 "Good Morning" = "صباح الخير";
 "Good Afternoon" = "مساء الخير";
 "Good Evening" = "مساء الخير";
 
+//TabBar
+"Today" = "اليوم";
+"Projects" = "المشاريع";
+"Calendar" = "التقويم";
+"Notifications" = "التنبيهات";
+
+//Permission Buttons
+"Add Users" = "إضافة مستخدمين";
+"Manage\nUsers" = "إدارة المستخدمين";
+"Manage Users" = "إدارة المستخدمين";
+"Attendance" = "الحضور";
+
+//Today Page
+"Today's Tasks" = "مهام اليوم";
+"Incomplete Tasks" = "مهام غير مكتملة";
+"Import .csv file containg User Name, and Email columns." = "أرفق ملف .csv يحتوي على أعمدة اسم المستخدم والبريد الإلكتروني";
+"User Information" = "بيانات المستخدمين";
+"Name" = "الاسم";
+"Email" = "البريد الالكتروني";
+"Job Title" = "المسمى الوظيفي";
+"Direct Manager:" = "المدير المباشر:";
+"Add" = "إضافة";
+"Cancel" = "إلغاء";
+"Manual" = "يدوي";
+"Import" = "إرفاق";
+"Check-in" = "تسجيل دخول";
+"Tap here to check-out" = "أنقر هنا لتسجيل الخروج";
+"Users" = "المستخدمين";
+"Send Emails" = "أرسل للبريد الالكتروني";
+"Owner" = "مالك";
+"Admin" = "مسؤول";
+"User" = "مستخدم";
+"Add Users\n" = "إضافة مستخدمين";
+"Attendance\n" = "الحضور";
+"Mangers" = "مدراء";
+
+
+//Project Tab
+"Search" = "بحث";
+"Create Project" = "إضافة مشروع";
+"Project Color" = "لون المشروع";
+"Personal" = "شخصي";
+"Files" = "ملفات";
+"New Project" = "مشروع جديد";
+"Create" = "إنشاء";
+
+//Status
+"To Do" = "لم يبدأ";
+"Doing" = "قيد العمل";
+"Done" = "مكتملة";
+"Delete" = "حذف";
+"Status" = "الحالة";
+"Done " = "مكتملة ";
+" Done" = "تم";
+"Edit" = "تحرير";
+
+//Task Page
+"Task" = "مهمة";
+"Title" = "العنوان";
+"Description" = "الوصف";
+"Deadline" = "الموعد النهائي";
+"Assignee" = "الموكل إليه";
+"Task Color" = "لون المهمة";
+"Attachments" = "المرفقات";
+"Meeting" = "اجتماع";
+"Meeting Agenda" = "أجندة الاجتماع";
+"Starts At " = "يبدأ        ";
+"Ends At   " = "ينتهي     ";
+"Meeting Link" = "رابط الاجتماع";
+"Meeting Room" = "مكان الاجتماع";
+"Project: " = "المشروع: ";
+"Users:" = "المستخدمين: ";
+"Users: " = "المستخدمين:";
+"Assignee: " = "الموكل إليهم:";
+"Creator: " = "المنشئ: ";
+"Meeting Minutes" = "محضر الاجتماع";
+"Save" = "حفظ";
+"Add Task" = "أضف المهمة";
+"Add Meeting" = "أضف الاجتماع";
+"Completed" = "مكتملة";
+"Date     " = "التاريخ";
+"Manage Users" = "إدارة المستخدمين";
+"PM:" = "مدير المشروع:";
+"Email" = "البريد الإلكتروني";
+"Mobile" = "الهاتف";
+"My Account" = "حسابي";
+"Direct Manager" = "المدير المباشر";
+"Organization\nStructure" = "هيكلة الشركة";
+"Personal\nTasks" = "المهام الشخصية";
+"Update Password" = "تحديث الرقم السري";
+"Delete Account" = "حذف الحساب";
+"Log Out" = "تسجيل خروج";
+"Organization Structure" = "هيكلة الشركة";
+"Profile" = "الملف الشخصي";
+"Create Organization" = "إنشاء منظمة";
+"Sign In" = "تسجيل دخول";
+"Welcome To Workaday" = "مرحباً بك في Workaday" ;
+"Create your Organization" = "أنشئ منظمتك";
+"Welcome Back" = "مرحباً بعودتك";
+"Owner Account" = "حساب المالك";
+"First Name" = "الاسم الأول" ;
+"Last Name" = "الاسم الأخير";
+"Password" = "كلمة المرور" ;
+"Confirm Password" = "تأكيد كلمة المرور" ;
+"Forget Password?" = "نسيت كلمة المرور؟" ;
+"Have an Organization? Sign In" = "لديك منظمة؟ سجل دخول";
+"Don't Have an Organization? Create One" = "ليس لديك منظمة؟ أنشئ واحدة";
+"Organization Location" = "موقع المنظمة";
+"Organization Name" = "اسم المنظمة";
+"Sign In To Continue" = "أكمل التسجيل";
+"No selected address" = "لم يتم تحديد الموقع";
+"Select location" = "حدد الموقع";
+"Organization Information" = "معلومات المنظمة";
+"Close" = "إغلاق";
+"Tap somewhere to select your coordinates" = "اضغط في مكان ما لتحديد إحداثياتك" ;

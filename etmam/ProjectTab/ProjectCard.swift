@@ -14,10 +14,13 @@ struct ProjectCard: View {
     @EnvironmentObject var dbTasks: taskDatabaseVM
     @EnvironmentObject var dbMeetings: meetingDatabaseVM
     @EnvironmentObject var dbUsers: userDatabaseVM
-    
+    @EnvironmentObject var dbOrg: orgDatabaseVM
+
     var project: Project
     @State var projectName = ""
+    @State var projectAttachments : [String]
     @State var projectDesc = ""
+    @State var projectManager = ""
     @State var members: [String] = []
     @State var Deadline = Date()
     
@@ -25,24 +28,48 @@ struct ProjectCard: View {
     @State  var circleProgress = [0.0,0.0]
     //private var circlePercentage: Int { Int (circleProgress * 100.0) }
     @State private var textHeight: CGFloat = 100
-   
+    
     @State private var showDeleteAlert = false
     @State private var isEditing = false
     
+    @State var firstName = ""
+    @State var lastName = ""
+    @State var user = User(firstName: "nil", lastName: "nil", userJobTitle: "nil", userPhone: "nil", userEmail: "nil", userPermession: 5, userProjects: ["nil"], userTasks: ["nil"], userMeetings: ["nil"], userImage: "nil", userLineManger: "nil", userOrg: "nil")
     
- 
+    
     
     @State var numOfToDoTasks = 0
     @State var numOfDoingTasks = 0
     @State var numOfDoneTasks = 0
+    @State var showStack = false
+    func getLM(){
+        dbUsers.getUserName2(id: project.projectManager!){
+         (success) -> Void in
+             if success {
+                 getUser()
+                 firstName = dbUsers.firstName
+                 lastName = dbUsers.lastName
+}
+    }}
     
+    
+    func getUser(){
+        dbUsers.getUser2(userID: project.projectManager!){
+         (success) -> Void in
+             if success {
+                 showStack = true
+                 user = dbUsers.user
+
+}
+    }}
     
     @Environment(\.presentationMode) var presentationMode
     
     
     var body: some View {
-        
-  
+      let x =  getLM()
+        let y = dbOrg.getMembers()
+
         ZStack{
             Color("BackgroundColor").ignoresSafeArea()
             
@@ -54,27 +81,27 @@ struct ProjectCard: View {
                     
                 }.padding([.top, .leading, .trailing] )
                 
-                Form{
+                Form {
                     Section{
-                   
+                        
                         HStack{
                             
                             VStack(spacing: 24){
                                 HStack{
                                     statusIcon(status: "To Do")
-                                    Text("To Do")
+                                    Text("To Do".localized)
                                     
                                 }
                                 
                                 HStack{
                                     statusIcon(status: "Doing")
-                                    Text("Doing")
+                                    Text("Doing".localized)
                                     
                                 }
                                 
                                 HStack{
                                     statusIcon(status: "Done")
-                                    Text("Done ")
+                                    Text("Done ".localized)
                                     
                                 }
                             }
@@ -104,134 +131,143 @@ struct ProjectCard: View {
                                     
                                         .font(.title)
                                         .multilineTextAlignment(.center)
-                                    Text("Completed").font(.footnote)
+                                    Text("Completed".localized).font(.footnote)
                                     
                                 }
                             }.padding([.leading,.bottom,.top])
                         }
                         HStack{
-                            Text("Deadline")
+                            Text("Deadline".localized)
                             
                             
                             DatePicker("",
                                        selection: $Deadline,
                                        displayedComponents: .date).disabled(!isEditing)
                             
-                                .accentColor(Color("blue")).background().cornerRadius(8)
+                                .accentColor(Color("blue"))
                             
                             
                         }
                         
                         
                     }
-                    TextField("Title", text: $projectName).disabled(!isEditing)
+                    TextField("Title".localized, text: $projectName).disabled(!isEditing)
                     
                     
-                    TextView(placeholderText: "Description", text: self.$projectDesc, minHeight: self.textHeight,maxHeight: self.textHeight, calculatedHeight: self.$textHeight)
+                    TextView(placeholderText: "Description".localized, text: self.$projectDesc, minHeight: self.textHeight,maxHeight: self.textHeight, calculatedHeight: self.$textHeight)
                         .frame(minHeight: self.textHeight, maxHeight: self.textHeight).disabled(!isEditing)
                     
-                    
+                 //   var userPM = dbUsers.getUser(userID: project.projectManager ?? "")
+                    if showStack {
                     NavigationLink(destination:
-                                    CardCell()) {
+                                    OtherUsersProfile(user: user )
+                    ) {
                         HStack{
-                            Image(systemName: "person").foregroundColor(Color("blue"))
-                            Text("PM:")
+                            Image(systemName: "person.fill").foregroundColor(Color("blue"))
+                            Text("PM:".localized)
                             Spacer()
-                            Image(uiImage: imageWith(name: "Salem Nasser")!).resizable().frame(width:25 , height: 25)
-                            Text("Salem Nasser").foregroundColor(.gray)
+                            Image(uiImage: imageWith(name: "\(firstName) \(lastName)")!).resizable().frame(width:25 , height: 25)
+                            Text("\(firstName) \(lastName)").foregroundColor(.gray)
                         }
                         
-                    }
+                    }}
                     
                 }.frame(height : 505).onAppear{
                     circleProgress = percentageCalc(id: project.id ?? "", t: dbTasks.tasks, m: dbMeetings.meetings)
                 }
                 
-               
-                HStack{
-                    NavigationLink(destination: ProjectsTasks(project: project, PName: project.projectName ?? "", PId:project.id ?? "")) {
-                        ZStack{
-                            VStack(alignment: .center, spacing: 8){
-                                Image(systemName: "list.bullet.rectangle.portrait")
-                                    .font(Font.system(size: 20, weight: .medium))
-                                    .foregroundColor(.white)
-                                Text("Tasks")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.white)
-                                Text("\(Int(circleProgress[1]))")
-                                    .foregroundColor(.white)
+                
+                VStack{
+                    HStack{
+                        NavigationLink(destination: ProjectsTasks(project: project, PName: project.projectName ?? "", PId:project.id ?? "")) {
+                            ZStack{
+                                Rectangle().frame( height: 105).foregroundColor(Color("orange")).cornerRadius(8)
+                                VStack(alignment: .center, spacing: 8){
+                                    Image(systemName: "list.bullet.rectangle.portrait.fill")
+                                        .font(Font.system(size: 20, weight: .medium))
+                                        .foregroundColor(.white)
+                                    Text("Tasks".localized)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.white)
+                                    Text("\(Int(circleProgress[1]))")
+                                        .foregroundColor(.white)
+                                }
                             }
+                            
+                            .font(.system(size: 16))
+                            
+                            
+                            
                         }
-                        .frame(width: 110, height: 105)
-                        .font(.system(size: 16))
-                        .background(Color("orange"))
-                        .cornerRadius(8)
-                    }
-                    NavigationLink(destination: OrgUsers(selectedUsers: $members, navBarTitle: $projectNavBarTitle, project: project)   ) {
-                        ZStack{
-                            VStack(alignment: .center, spacing: 8){
-                                Image(systemName: "person.3.fill")
-                                    .foregroundColor(.white)
-                                Text("Members")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.white)
-                                Text("\(members.count)")
-                                    .foregroundColor(.white)
+                        NavigationLink(destination: OrgUsers(selectedUsers: $members, navBarTitle: $projectNavBarTitle, project: project)   ) {
+                            ZStack{
+                                Rectangle().frame( height: 105).foregroundColor(Color("pink")).cornerRadius(8)
+                                VStack(alignment: .center, spacing: 8){
+                                    Image(systemName: "person.3.fill")
+                                        .foregroundColor(.white)
+                                    Text("Users".localized)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.white)
+                                    Text("\(members.count)")
+                                        .foregroundColor(.white)
+                                }
                             }
+                            
+                            .font(.system(size: 16))
+                            
+                            
+                            
                         }
-                        .frame(width: 110, height: 105)
-                        .font(.system(size: 16))
-                        .background(Color("pink"))
-                        .cornerRadius(8)
+//                        NavigationLink(destination: ProjectFilesView(filesUrls: [], newUrls: [], projectID: project.id!)) {
+                        NavigationLink(destination: ProjectFilesView(filesUrls: $projectAttachments )) {
                         
-                    }
-                    NavigationLink(destination: CardCell()) {
-                        ZStack{
-                            VStack(alignment: .center, spacing: 8){
-                                Image(systemName: "paperclip")
-                                    .font(Font.system(size: 20, weight: .bold))
-                                    .foregroundColor(.white)
-                                Text("Files")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.white)
-                                Text("3")
-                                    .foregroundColor(.white)
+                            ZStack{
+                                Rectangle().frame( height: 105).foregroundColor(Color("blue")).cornerRadius(8)
+                                VStack(alignment: .center, spacing: 8){
+                                    Image(systemName: "paperclip")
+                                        .font(Font.system(size: 20, weight: .bold))
+                                        .foregroundColor(.white)
+                                    Text("Files".localized)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.white)
+                                    Text("\(0)")
+                                        .foregroundColor(.white)
+                                }
                             }
+                            
+                            .font(.system(size: 16))
+                            
+                            
                         }
-                        .frame(width: 110, height: 105)
-                        .font(.system(size: 16))
-                        .background(Color("blue"))
-                        .cornerRadius(8)
+                    }
+                    Spacer()
+                    // && project manger
+                    if isEditing{
+                        Button(action: {showDeleteAlert = true }){
+                            ZStack{
+                                Rectangle().frame(height: 55).foregroundColor(Color("red")).cornerRadius(8)
+                                Text("Delete Project").foregroundColor(.white)
+                            }
+                        }.alert( isPresented: $showDeleteAlert) {
+                            
+                            Alert(
+                                title: Text("Delete \(projectName) Project?"),
+                                message: Text(""),
+                                primaryButton: .destructive(Text("Delete"), action: {
+                                    dbProjects.deleteProject(project)
+                                }),
+                                secondaryButton: .cancel(Text("Cancel"), action: { // 1
+                                    
+                                    
+                                })
+                            )
+                            
+                        }
                     }
                 }.padding()
-                Spacer()
-                // && project manger
-                if isEditing{
-                    Button(action: {showDeleteAlert = true }){
-                        ZStack{
-                            Rectangle().frame(width: 350, height: 55).foregroundColor(Color("tabBarColor")).cornerRadius(8)
-                            Text("Delete Project").foregroundColor(.red)
-                        }
-                    }.alert( isPresented: $showDeleteAlert) {
-                        
-                        Alert(
-                            title: Text("Delete \(projectName) Projcet?"),
-                            message: Text(""),
-                            primaryButton: .destructive(Text("Delete"), action: {
-                                dbProjects.deleteProject(project)
-                            }),
-                            secondaryButton: .cancel(Text("Cancel"), action: { // 1
-                                
-                                
-                            })
-                        )
-                        
-                    }
-                }
-                
             }
         }
-        .navigationTitle("Project")
+        .navigationTitle("Project".localized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             ToolbarItem(placement: isEditing ? .confirmationAction : .navigationBarTrailing ){
@@ -240,14 +276,18 @@ struct ProjectCard: View {
                         projectName = project.projectName ?? ""
                         dbProjects.updateProjectInfo(project, field: "projectDesc", content: projectDesc)
                         dbProjects.updateProjectDeadline(project, deadline: Deadline)
-                       
+                        dbProjects.updateProjectAttachments(project, attachments: projectAttachments)
+
+                        
                     }else if !isEditing{
                         dbProjects.updateProjectInfo(project, field: "projectName", content: projectName)
                         dbProjects.updateProjectInfo(project, field: "projectDesc", content: projectDesc)
                         dbProjects.updateProjectDeadline(project, deadline: Deadline)
+                        dbProjects.updateProjectAttachments(project, attachments: projectAttachments)
+
                     }
                 }){
-                    Text(isEditing ? "Done" : "Edit").foregroundColor(Color("blue"))
+                    Text(isEditing ? " Done".localized : "Edit".localized).foregroundColor(Color("blue"))
                     
                 }
             }
@@ -258,10 +298,4 @@ struct ProjectCard: View {
     
 }
 
-
-//struct EditProject_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProjectCard()
-//    }
-//}
 

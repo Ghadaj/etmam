@@ -30,9 +30,9 @@
             filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "getUserProjects()"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
+            landmarkName = "updateUser(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -46,8 +46,8 @@
             filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "464"
+            endingLineNumber = "464"
             landmarkName = "getUserProjects()"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
             landmarkName = "getUserProjects()"
             landmarkType = "7">
             <Locations>
@@ -110,41 +110,9 @@
             filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "450"
+            endingLineNumber = "450"
             landmarkName = "getUserProjects()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "37E6F85D-DDB1-4050-8B12-7DF2129A20A4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "getUserProjects()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3942FC1D-E276-47E9-8DE8-7011D8D3171A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "getUserTasks()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -183,31 +151,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9433EF52-81D2-45CD-8689-DE6AA6252D08"
+            uuid = "E9853FB9-5969-4F0D-A28C-6ABA5FC169B7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "getUserTasks()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E9853FB9-5969-4F0D-A28C-6ABA5FC169B7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,10 +190,10 @@
             filePath = "../testFirebase/testFirebase/DB_VM/taskDatabaseVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "getTasks(_:)"
-            landmarkType = "7">
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "taskDatabaseVM"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -254,9 +206,121 @@
             filePath = "../testFirebase/testFirebase/DB_VM/taskDatabaseVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "getTasks(_:)"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "taskDatabaseVM"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "91939DAB-6498-4E32-831F-E7259B044206"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "etmam/ProjectTab/CreateProject.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "871BBAA3-AC7D-4F99-AD0E-FC4C15AF0FB9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "etmam/CalendarTab/Task_FrontEnd/TaskCard.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C027F042-9045-4471-9069-5BA9547FE1CC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "etmam/CalendarTab/Meeting_FrontEnd/MeetingCard.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "MeetingCard"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "C027F042-9045-4471-9069-5BA9547FE1CC - 8f2309b4f2a1496"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of Workaday.MeetingCard.maxTextHeight : CoreGraphics.CGFloat"
+                  moduleName = "Workaday"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ghada/Desktop/Features%20/etmam%20-%20Ghada/etmam/CalendarTab/Meeting_FrontEnd/MeetingCard.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "C027F042-9045-4471-9069-5BA9547FE1CC - 6da456ff6aee7cbe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Workaday.MeetingCard.init(dbMeetings: SwiftUI.EnvironmentObject&lt;Workaday.meetingDatabaseVM&gt;, dbUsers: SwiftUI.EnvironmentObject&lt;Workaday.userDatabaseVM&gt;, dbOrg: SwiftUI.EnvironmentObject&lt;Workaday.orgDatabaseVM&gt;, meeting: Workaday.Meeting, members: Swift.Array&lt;Swift.String&gt;, meetingMinutes: Swift.Array&lt;Swift.String&gt;, status: Swift.Array&lt;Swift.String&gt;, selectedStatus: Swift.String, meetingDate: Foundation.Date, startTime: Foundation.Date, endTime: Foundation.Date, meetingTitle: Swift.String, meetingAgenda: Swift.String, meetingLink: Swift.String, isMeetingLinkVisible: Swift.Bool, meetingProject: Swift.String, meetingRoom: Swift.String, meetingProjectName: Swift.String, meetingCreator: Swift.String, firstName: Swift.String, lastName: Swift.String, user: Workaday.User, showStack: Swift.Bool, presentationMode: SwiftUI.Environment&lt;SwiftUI.Binding&lt;SwiftUI.PresentationMode&gt;&gt;) -&gt; Workaday.MeetingCard"
+                  moduleName = "Workaday"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ghada/Desktop/Features%20/etmam%20-%20Ghada/etmam/CalendarTab/Meeting_FrontEnd/MeetingCard.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "1692">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D07C2C2-44B2-4DA0-ABA9-53ED5E6EFDDE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "799"
+            endingLineNumber = "799"
+            landmarkName = "addUserAndOrg(_:_:_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8FB8DE0F-7C39-49B1-8BC6-C6395B3C12EF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "800"
+            endingLineNumber = "800"
+            landmarkName = "addUserAndOrg(_:_:_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

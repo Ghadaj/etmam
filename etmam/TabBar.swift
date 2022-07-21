@@ -18,12 +18,11 @@ enum Tabs: String{
 struct TabBar: View {
     @State var selectedTab : Tabs = .Today
     init() {
-//        do{
-//            try Auth.auth().signOut()}
-//        catch {
-//          
-//            print("")
-//        }
+        orgDatabaseVM()
+        taskDatabaseVM()
+        projectDatabaseVM()
+        meetingDatabaseVM()
+        userDatabaseVM()
         UITabBar.appearance().backgroundColor = UIColor(named: "tabBarColor")
     }
     
@@ -34,32 +33,32 @@ struct TabBar: View {
                 Today()
                     .tabItem{
                         Image(systemName: "doc.text.image")
-                        Text("Today")
+                        Text("Today".localized)
                         
                     }.tag(Tabs.Today)
                 
                 projectsTab()
                     .tabItem{
                         Image(systemName: "align.vertical.top")
-                        Text("Projects")
+                        Text("Projects".localized)
                         
                     }.tag(Tabs.Projects)
                 
                 calendarTab()
                     .tabItem{
                         Image(systemName: "calendar")
-                        Text("Calendar")
+                        Text("Calendar".localized)
                     }.tag(Tabs.Calendar)
                 
                 notificationTab()
                 
                     .tabItem{
                         Image(systemName: "bell")
-                        Text("Notification")
+                        Text("Notifications".localized)
                     }.tag(Tabs.Notifications)
             }
             .accentColor(Color("blue"))
-            .navigationTitle(selectedTab.rawValue)
+            .navigationTitle(selectedTab.rawValue.localized)
             
             
         }.navigationViewStyle(.stack)

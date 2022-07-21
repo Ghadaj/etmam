@@ -9,7 +9,10 @@ import SwiftUI
 
 struct CreateProject: View {
     @EnvironmentObject var dbProjects: projectDatabaseVM
-    let userVM = userDatabaseVM()
+    @EnvironmentObject var dbUsers: userDatabaseVM
+    @EnvironmentObject var dbOrg: orgDatabaseVM
+
+  //  let userVM = userDatabaseVM()
     @State var projectName = ""
     @State var projectDesc = ""
     @State private var members: [String] = []
@@ -19,7 +22,8 @@ struct CreateProject: View {
     @State private var selectedColor  = "blue"
     @State var attachments = [""]
     @Binding var showCreateSheet: Bool
-    
+
+    //var
     let columns = Array(repeating: GridItem(.flexible(minimum: 1, maximum: 1), spacing: 35), count: 5)
     @State private var textHeight: CGFloat = 40
     @State private var maxTextHeight: CGFloat = 10000000
@@ -27,17 +31,18 @@ struct CreateProject: View {
     
     
     var body: some View {
-        
+        let x = dbOrg.getMembers()
+
         NavigationView{
             
             Form{
                 
                 Section{
                     
-                    TextField( "Title", text: $projectName)
+                    TextField( "Title".localized, text: $projectName)
                     
                     
-                    TextView(placeholderText: "Description", text: $projectDesc, minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
+                    TextView(placeholderText: "Description".localized, text: $projectDesc, minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
                         .frame(minHeight: self.textHeight, maxHeight: self.textHeight)
                     
                 }
@@ -47,7 +52,7 @@ struct CreateProject: View {
                     
                     HStack{
                         
-                        Text("Deadline")
+                        Text("Deadline".localized)
                         
                         DatePicker("",
                                    selection: $Deadline,
@@ -68,10 +73,10 @@ struct CreateProject: View {
                         
                         
                         HStack{
-                           
-                            Image(systemName: "person.badge.plus").foregroundColor(Color("blue"))
-                            Text("Members:")
-                            Text("\(members.count)")
+                            Image(systemName: "person.fill.badge.plus").foregroundColor(Color("blue"))
+                            Text("Users: ".localized)
+                            membersCapsule(members, bigArrayOfUsers: dbOrg.orgMembers).padding(.bottom,-50)
+
                         }
                         
                     }
@@ -80,7 +85,7 @@ struct CreateProject: View {
                     
                     
                     HStack{
-                        Text("Project Color")
+                        Text("Project Color".localized)
                         Spacer()
                         ForEach(colors, id:\.self){ color in
                             ZStack {
@@ -107,17 +112,17 @@ struct CreateProject: View {
                         }
                     }
                     HStack{
-                        Image(systemName: "paperclip").foregroundColor(.gray)
-                        Text("Files")
+                        Image(systemName: "paperclip").foregroundColor(Color("blue"))
+                        Text("Files".localized)
                         Spacer()
-                        Image(systemName: "plus").foregroundColor(Color("blue"))
+                        Image(systemName: "plus").foregroundColor(Color("gray"))
                     }
                     
                 }
                 
             }
         
-            .navigationTitle("New Project")
+            .navigationTitle("New Project".localized)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 ToolbarItem(placement: .confirmationAction){
@@ -126,21 +131,21 @@ struct CreateProject: View {
                         
                         if projectName != "" {
                             
-                            dbProjects.addProject(Project(projectName: projectName, projectManager: userVM.currentUserID, projectDeadline: Deadline, projectMembers: members, projectDesc: projectDesc, projectAttachments: attachments, projectColor: selectedColor, orgID: userVM.currentOrgID))
+                            dbProjects.addProject(Project(projectName: projectName, projectManager: dbUsers.currentUserID, projectDeadline: Deadline, projectMembers: members, projectDesc: projectDesc, projectAttachments: attachments, projectColor: selectedColor, orgID: dbUsers.currentOrgID))
                             
                             
                             showCreateSheet = false
                         }
                         
                     }) {
-                        Text("Create").foregroundColor(projectName == "" ?.gray : Color("blue"))
+                        Text("Create".localized).foregroundColor(projectName == "" ?.gray : Color("blue"))
                     }
                 }
                 ToolbarItem(placement: .cancellationAction){
                     Button(action:{
                         showCreateSheet = false
                     }){
-                        Text("Cancel").foregroundColor(Color("blue"))
+                        Text("Cancel".localized).foregroundColor(Color("blue"))
                     }
                     
                 }

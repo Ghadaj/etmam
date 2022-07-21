@@ -48,7 +48,6 @@ struct SignInView : View{
             }
             ){
                 Button("Sign In", action:{
-                    print("email:\(formVM.email),password:\(formVM.password)")
                     UserAuthVM.signIn(email: formVM.email, password: formVM.password)
                 }).navigationTitle("Sign in").frame(maxWidth: .infinity, alignment:.center).disabled(disableForm)
             }

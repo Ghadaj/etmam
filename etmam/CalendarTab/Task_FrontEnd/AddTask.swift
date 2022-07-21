@@ -10,8 +10,11 @@ import SwiftUI
 
 struct AddTask: View {
     @EnvironmentObject var dbTasks: taskDatabaseVM
+    @EnvironmentObject var dbUsers: userDatabaseVM
+    @EnvironmentObject var userVM: userDatabaseVM
+    @EnvironmentObject var dbOrg: orgDatabaseVM
+
     @State  var assignee: [String] = []
-    @Binding var selectedDate: Date
     @Binding var showAddSheet: Bool
     @State var isDatePickerVisible: Bool = false
     @State var Deadline = Date()
@@ -34,17 +37,18 @@ struct AddTask: View {
     
     var body: some View {
         
-        
+        let y = dbOrg.getMembers()
+
         
         Form{
             
             Section{
                
-                TextField( "Title", text: $taskTitle)
+                TextField( "Title".localized, text: $taskTitle)
                     
                 
                 
-                TextView(placeholderText: "Description", text: $taskDesc, minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
+                TextView(placeholderText: "Description".localized, text: $taskDesc, minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
                     .frame(minHeight: self.textHeight, maxHeight: self.textHeight)
                    
             }
@@ -52,13 +56,13 @@ struct AddTask: View {
             
             Section{
                 
-                HStack{
-                    Text("Deadline")
+                
                  
-                    Button(action: {isDatePickerVisible.toggle()}){
-                        Toggle("", isOn: $isDatePickerVisible)
-                    }
-                }
+                  
+                Toggle("Deadline".localized, isOn: $isDatePickerVisible)
+                        
+                    
+                
                 
                 
                 if isDatePickerVisible {
@@ -77,10 +81,13 @@ struct AddTask: View {
                 NavigationLink(destination:
                     Projects(selectedProject: $taskProject , selectedProjectName: $taskProjectName)) {
 
-                    Text("Project: ")
+                    HStack{
+                    Image(systemName: "align.vertical.top.fill").foregroundColor(Color("blue"))
+                    Text("Project: ".localized)
                    
-                    Text(taskProjectName).foregroundColor(.gray)
+                    Text(taskProjectName.localized).foregroundColor(.gray)
 
+                }
                 }
                 
                 
@@ -89,10 +96,10 @@ struct AddTask: View {
                     
                     
                     HStack{
-                        Image(systemName: "person.badge.plus").foregroundColor(Color("blue"))
-                            Text("Assignee: ")
+                        Image(systemName: "person.fill.badge.plus").foregroundColor(Color("blue"))
+                        Text("Assignee: ".localized)
                          
-                        Text("\(assignee.count)").foregroundColor(.gray)
+                        membersCapsule(assignee, bigArrayOfUsers: dbOrg.orgMembers).padding(.bottom,-50)
                          
                            
                        }
@@ -103,7 +110,7 @@ struct AddTask: View {
                 
             
                 HStack{
-                    Text("Task Color")
+                    Text("Task Color".localized)
                     Spacer()
                     ForEach(colors, id:\.self){ color in
                         ZStack {
@@ -130,10 +137,10 @@ struct AddTask: View {
                     }
                  }
                 HStack{
-                    Image(systemName: "paperclip").foregroundColor(.gray)
-                    Text("Attachments")
+                    Image(systemName: "paperclip").foregroundColor(Color("blue"))
+                    Text("Attachments".localized)
                     Spacer()
-                    Image(systemName: "plus").foregroundColor(Color("blue"))
+                    Image(systemName: "plus").foregroundColor(Color("gray"))
                 }
                 
             }
@@ -146,13 +153,12 @@ struct AddTask: View {
                 
                 if taskTitle != "" {
                     if isDatePickerVisible{
-                    dbTasks.addTask(Task(taskTitle: taskTitle, taskDesc: taskDesc, taskCreator: "", taskMembers: assignee, taskProjectId: taskProject, taskStartDate: selectedDate, taskDeadline: Deadline, taskAttachments: [], taskColor: selectedColor,taskStatus: "To Do"))
+                    dbTasks.addTask(Task(taskTitle: taskTitle, taskDesc: taskDesc, taskCreator: userVM.currentUserID, taskMembers: assignee, taskProjectId: taskProject, taskDeadline: Deadline, taskAttachments: [], taskColor: selectedColor,taskStatus: "To Do",taskOrgID: userVM.currentOrgID))
                     }else{
-                        dbTasks.addTask(Task(taskTitle: taskTitle, taskDesc: taskDesc, taskCreator: "", taskMembers: assignee, taskProjectId: taskProject, taskStartDate: selectedDate, taskAttachments: [], taskColor: selectedColor,taskStatus: "To Do"))
+                      dbTasks.addTask(Task(taskTitle: taskTitle, taskDesc: taskDesc, taskCreator: userVM.currentUserID, taskMembers: assignee, taskProjectId: taskProject, taskAttachments: [], taskColor: selectedColor,taskStatus: "To Do",taskOrgID: userVM.currentOrgID))
                     }
-                    
                     showAddSheet = false
-                }
+                  }
                 
             }) {
                 Text("Add").foregroundColor(taskTitle == "" ?.gray : Color("blue"))
@@ -172,39 +178,28 @@ struct AddTask: View {
 
 
 struct AddTaskMeetingSheet : View {
-    @Binding var selectedDate: Date
     @State private var choice = 0
     @Binding var showAddSheet: Bool
-  
-    @State  var taskProject = "No project"
-    @State  var taskProjectName = "No project"
-    @State  var meetingProject = "No project"
-    @State  var meetingProjectName = "No project"
-    
-
-        
-    
-  var body : some View{
-        
+    @State var taskProject = ""
+    @State var taskProjectName = ""
+    @State var meetingProject = ""
+    @State var meetingProjectName = ""
+    var body : some View{
         NavigationView{
-            
             VStack {
                 if choice == 0{
-                    AddTask(selectedDate: $selectedDate,showAddSheet: $showAddSheet, taskProject: $taskProject, taskProjectName:
+                    AddTask(showAddSheet: $showAddSheet, taskProject: $taskProject, taskProjectName:
                                 $taskProjectName)
-              
-                    
                 }
                 if choice == 1{
-                    AddMeeting(selectedDate: $selectedDate,showAddSheet: $showAddSheet, meetingProject: $meetingProject, meetingProjectName: $meetingProjectName)
-              
+                    AddMeeting(showAddSheet: $showAddSheet, meetingProject: $meetingProject, meetingProjectName: $meetingProjectName)
                 }
             }
             
          
         
            
-            .navigationTitle(choice == 0 ? "Add Task": "Add Meeting")
+            .navigationTitle(choice == 0 ? "Add Task".localized: "Add Meeting".localized)
             .navigationBarTitleDisplayMode(.inline)
            
             
@@ -212,7 +207,7 @@ struct AddTaskMeetingSheet : View {
                 ToolbarItem(placement: .cancellationAction){
                    
                                         Button(action:{showAddSheet = false}) {
-                                           Text("Cancel").foregroundColor(Color("blue"))
+                                            Text("Cancel".localized).foregroundColor(Color("blue"))
                     
                                         }                }
                 
@@ -220,9 +215,9 @@ struct AddTaskMeetingSheet : View {
                     
                   
                     Picker(selection: self.$choice, label: Text("")) {
-                        Text("Task").tag(0)
+                        Text("Task".localized).tag(0)
                    
-                        Text("Meeting").tag(1)
+                        Text("Meeting".localized).tag(1)
                 
                    
                                        }
@@ -235,40 +230,6 @@ struct AddTaskMeetingSheet : View {
                 
             }
                       
-//            .toolbar{
-//
-//
-//                ToolbarItem(placement: .navigationBarLeading ){
-//
-//
-//                    Button(action:{showAddSheet = false}) {
-//                        Text("Cancel").foregroundColor(Color("blue"))
-//
-//                    }
-//                }
-//
-//
-//                ToolbarItem{
-//
-//
-//                        Picker(selection: self.$choice, label: Text("")) {
-//                            Text("Task").tag(0).onTapGesture {
-//                                choice = 0
-//
-//                            }
-//
-//                            Text("Meeting").tag(1).onTapGesture {
-//                                choice = 1
-//
-//                            }
-//
-//                    }
-//                        .frame(width: 180,height: 40)
-//                        .pickerStyle(SegmentedPickerStyle())
-//                        .padding(.horizontal, 50.0)
-//
-//                 }
-//             }
         }
     }
 }

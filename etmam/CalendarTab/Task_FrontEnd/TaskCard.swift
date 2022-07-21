@@ -11,6 +11,10 @@ import SwiftUI
 struct TaskCard: View {
     var task : Task
     @EnvironmentObject var dbTasks: taskDatabaseVM
+    @EnvironmentObject var dbUsers: userDatabaseVM
+    @EnvironmentObject var dbOrg: orgDatabaseVM
+
+
     @State var assignee: [String] = []
     @State private var status = ["To Do","Doing","Done"]
     @State var selectedStatus = "To Do"
@@ -21,27 +25,53 @@ struct TaskCard: View {
     @State var taskDesc = ""
     @State var taskProject = ""
     @State var taskProjectName = ""
+    @State var firstName = ""
+    @State var lastName = ""
+    @State var user = User(firstName: "nil", lastName: "nil", userJobTitle: "nil", userPhone: "nil", userEmail: "nil", userPermession: 5, userProjects: ["nil"], userTasks: ["nil"], userMeetings: ["nil"], userImage: "nil", userLineManger: "nil", userOrg: "nil")
     @State private var textHeight: CGFloat = 40
     @State private var maxTextHeight: CGFloat = 10000000
     let columns = Array(repeating: GridItem(.flexible(minimum: 1, maximum: 1), spacing: 35), count: 5)
+    @State var showStack = false
+    func getLM(){
+        dbUsers.getUserName2(id: task.taskCreator!){
+         (success) -> Void in
+             if success {
+                 getUser()
+                 firstName = dbUsers.firstName
+                 lastName = dbUsers.lastName
+
+        }}
+    }
     
+    func getProjectName(projectId: String) -> String{
+       return dbUsers.projects.first(where: { $0.id == projectId})?.projectName ?? "Personal"
+    }
+    func getUser() {
+        dbUsers.getUser2(userID: task.taskCreator!){
+         (success) -> Void in
+             if success {
+                 showStack = true
+                 user = dbUsers.user
+}
+    }}
     
     @Environment(\.presentationMode) var presentationMode
     
     
     var body: some View {
-        
-        
+
+        let x = dbOrg.getMembers()
+
         
         Form{
             
             Section{
                
-                TextField( "Title", text: $taskTitle)
+                TextField( "Title".localized, text: $taskTitle)
                     
                 
                 
-                TextView(placeholderText: "Description", text: $taskDesc, minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
+                TextView(placeholderText: "Description".localized, text: $taskDesc, minHeight: self.textHeight,maxHeight: self.maxTextHeight, calculatedHeight: self.$textHeight)
                     .frame(minHeight: self.textHeight, maxHeight: self.textHeight)
             }
             
@@ -49,7 +79,7 @@ struct TaskCard: View {
             Section{
                 
                 HStack{
-                    Text("Deadline")
+                    Text("Deadline".localized)
                     
                     if isDatePickerVisible {
                         DatePicker("",
@@ -60,20 +90,18 @@ struct TaskCard: View {
                     }
                     
                     
-                    
+                    Toggle("", isOn: $isDatePickerVisible)
                  
-                    Button(action: {isDatePickerVisible.toggle()}){
-                        Toggle("", isOn: $isDatePickerVisible)
-                    }
+                  
                 }
                 HStack{
-                    Text("Status")
+                    Text("Status".localized)
                     
                     Spacer()
                     Menu {
                         Picker(selection: $selectedStatus) {
                             ForEach(status, id:\.self) { value in
-                                Text(value)
+                                Text(value.localized)
                                     .tag(value)
                                    
                             }
@@ -84,7 +112,7 @@ struct TaskCard: View {
                          Spacer()
 
                         statusIcon(status: selectedStatus)
-                            Text(selectedStatus).font(.title3).foregroundColor(Color("blue"))
+                            Text(selectedStatus.localized).foregroundColor(Color("blue"))
                         }
                            
                     }
@@ -95,31 +123,32 @@ struct TaskCard: View {
             }
             Section{
                 
-                
                 NavigationLink(destination:
                                 Projects(selectedProject: $taskProject , selectedProjectName: $taskProjectName)){
-                    
-                    
-                    Text("Project:")
+                    HStack{
+                    Image(systemName: "align.vertical.top.fill").foregroundColor(Color("blue"))
+                    Text("Project: ".localized)
                    
-                    Text(taskProjectName).foregroundColor(.gray)
-                    
+                    Text(getProjectName(projectId: taskProject).localized).foregroundColor(.gray)
+
+                }
                 }
                 
                 
                 
-                
+                let x = getLM()
 
                 NavigationLink(destination:
-                                CardCell()) {
+                                OtherUsersProfile(user: user)) {
                     HStack{
-                        Image(systemName: "person").foregroundColor(Color("blue"))
-                        Text("Creator:")
-                        Spacer()
-                        Image(uiImage: imageWith(name: "Salem Nasser")!).resizable().frame(width:25 , height: 25)
-                        Text("Salem Nasser").foregroundColor(.gray)
-                    }
+                        Image(systemName: "person.fill").foregroundColor(Color("blue"))
+                        Text("Creator: ".localized)
 
+                        Image(uiImage: imageWith(name: "\(firstName) \(lastName)")!).resizable().frame(width:25 , height: 25)
+
+                        Text("\(firstName) \(lastName)").foregroundColor(.gray)
+                    }
+                    
                 }
                 
                 
@@ -129,10 +158,10 @@ struct TaskCard: View {
                     
                     HStack{
                     
-                        Image(systemName: "person.badge.plus").foregroundColor(Color("blue"))
-                            Text("Assignee: ")
+                        Image(systemName: "person.fill.badge.plus").foregroundColor(Color("blue"))
+                        Text("Assignee: ".localized)
                          
-                        Text("\(assignee.count)").foregroundColor(.gray)
+                        membersCapsule(assignee, bigArrayOfUsers: dbOrg.orgMembers).padding(.bottom,-50)
                         }
                         
                         
@@ -146,10 +175,10 @@ struct TaskCard: View {
             Section{
                 
                 HStack{
-                    Image(systemName: "paperclip").foregroundColor(.gray)
-                    Text("Attachments")
+                    Image(systemName: "paperclip").foregroundColor(Color("blue"))
+                    Text("Attachments".localized)
                     Spacer()
-                    Image(systemName: "plus").foregroundColor(Color("blue"))
+                    Image(systemName: "plus").foregroundColor(Color("gray"))
                 }
                 
              
@@ -158,7 +187,7 @@ struct TaskCard: View {
             
         
         }
-        .navigationTitle("Task")
+        .navigationTitle("Task".localized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
         ToolbarItem(placement:.confirmationAction){
@@ -189,7 +218,7 @@ struct TaskCard: View {
                 }
                     presentationMode.wrappedValue.dismiss()
                 }}) {
-                Text("Save").foregroundColor(taskTitle != "" ? Color("blue") :.gray)
+                    Text("Save".localized).foregroundColor(taskTitle != "" ? Color("blue") :.gray)
             }
         }
       }
@@ -197,8 +226,3 @@ struct TaskCard: View {
     }
 }
 
-//struct TaskCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TaskCard()
-//    }
-//}

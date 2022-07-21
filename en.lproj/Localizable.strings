@@ -1,7 +1,128 @@
-/* 
+/*
   Localizable.strings
   etmam
 
   Created by Ghada on 30/06/2022.
   
 */
+
+//Greeting Header
+"Hello" = "Hello" ;
+"Good Morning" = "Good Morning";
+"Good Afternoon" = "Good Afternoon";
+"Good Evening" = "Good Evening";
+
+//TabBar
+"Today" = "Today";
+"Projects" = "Projects";
+"Calendar" = "Calendar";
+"Notifications" = "Notifications";
+
+//Permission Buttons - Today Page
+"Add Users" = "Add Users";
+"Manage Users" = "Manage Users";
+"Attendance" = "Attendance";
+
+//Today Page
+"Today's Tasks" = "Today's Tasks";
+"Incomplete Tasks" = "Incomplete Tasks";
+"Import .csv file containg User Name, and Email columns." = "Import .csv file containg User Name, and Email columns.";
+"User Information" = "User Information";
+"Name" = "Name";
+"Email" = "Email";
+"Job Title" = "Job Title";
+"Direct Manager:" = "Direct Manager:";
+"Add" = "Add";
+"Cancel" = "Cancel";
+"Manual" = "Manual";
+"Import" = "Import";
+"Check-in" = "Check-in";
+"Tap here to check-out" = "Tap here to check-out";
+"Users" = "Users";
+"Send Emails" = "Send Emails";
+"Owner" = "Owner";
+"Admin" = "Admin";
+"Employee" = "Employee";
+"Add Users\n" = "Add Users\n";
+"Attendance\n" = "Attendance\n";
+"Mangers" = "Mangers";
+
+//Project Page
+"Search" = "Search";
+"Create Project" = "Create Project";
+"Project Color" = "Project Color";
+"Personal" = "Personal";
+"Files" = "Files";
+"New Project" = "New Project";
+"Create" = "Create";
+
+
+//Status
+"To Do" = "To Do";
+"Doing" = "Doing";
+"Done" = "Done";
+"Delete" = "Delete";
+"Status" = "Status";
+"Done " = "Done ";
+" Done" = " Done";
+"Edit" = "Edit";
+
+//Task Page
+"Task" = "Task";
+"Title" = "Title";
+"Description" = "Description";
+"Deadline" = "DeadLine";
+"Assignee" = "Assignee";
+"Task Color" = "Task Color";
+"Attachments" = "Attachments";
+"Meeting" = "Meeting";
+"Meeting Agenda" = "Meeting Agenda";
+"Starts At " = "Starts At ";
+"Ends At   " = "Ends At   ";
+"Meeting Link" = "Meeting Link";
+"Meeting Room" = "Meeting Room";
+"Project: " = "Project: ";
+"Users:" = "Users:";
+"Users: " = "Users: ";
+"Assignee: " = "Assignee: ";
+"Creator: " = "Creator: ";
+"Meeting Minutes" = "Meeting Minutes";
+"Save" = "Save";
+"Add Task" = "Add Task";
+"Add Meeting" = "Add Meeting";
+"Completed" = "Completed";
+"Date     " = "Date     ";
+"Manage Users" = "Manage Users";
+"PM:" = "PM:";
+"Email" = "Email";
+"Mobile" = "Mobile";
+"My Account" = "My Account";
+"Direct Manager" = "Direct Manager";
+"Organization\nStructure" = "Organization\nStructure";
+"Personal\nTasks" = "Personal\nTasks";
+"Update Password" = "Update Password";
+"Delete Account" = "Delete Account";
+"Log Out" = "Log Out";
+"Organization Structure" = "Organization Structure";
+"Profile" = "Profile";
+"Create Organization" = "Create Organization";
+"Sign in" = "Sign in";
+"Welcome To Workaday" = "Welcome To Workaday" ;
+"Create your Organization" = "Create your Organization";
+"Welcome Back" = "Welcome Back";
+"Owner Account" = "Owner Account";
+"First Name" = "First Name" ;
+"Last Name" = "Last Name";
+"Password" = "Password" ;
+"Confirm Password" = "Confirm Password";
+"Forget Password?" = "Forget Password?" ;
+"Have an Organization? Sign In" = "Have an Organization? Sign In";
+"Don't Have an Organization? Create One" = "Don't Have an Organization? Create One";
+"Organization Location" = "Organization Location";
+"Organization Name" = "Organization Name";
+"Sign In To Continue" = "Sign To Continue";
+"No selected address" = "No selected address";
+"Select location" = "Select location";
+"Organization Information" = "Organization Information";
+"Close" = "Close";
+"Tap somewhere to select your coordinates" = "Tap somewhere to select your coordinates";

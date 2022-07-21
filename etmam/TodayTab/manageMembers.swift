@@ -6,55 +6,54 @@
 //
 import SwiftUI
 struct manageMembers: View {
+@EnvironmentObject var dbOrg: orgDatabaseVM
   @State var searchingFor = ""
-  @State private var users = ["Karen Castillo", "Laren Castillo", "Lola Amber", "Sara Ahmed", "Jack Sparrow", "Tony Stark", "Masashi Kishimoto"]
+  
   @State private var images = ["pic"]
   @State private var jobTitle = ["Ui/ Ux"]
-  struct User {
-    let imageName: String
-    let name: String
-    let position: String
-  }
-  let Users = [User(imageName: "pic", name: "Karen Castillo", position: "Ui/Ux")]
+  
   // @State private var currentNumber = 1
 //  let member : User
  // let jobrole = ""
   var body: some View {
-    List {
-      ForEach(results, id: \.self) { user in
-        HStack{
-          Image("proflePic")
-            .resizable()
-            .frame(width: 45, height: 45)
-            .cornerRadius(100)
-            .scaledToFit()
-          VStack(alignment: .leading){
-            Text(user)
-              .bold()
-            Text("job Title")
-              .foregroundColor(Color.gray)
+      let y = dbOrg.getMembers()
+
+      List {
+          if results.isEmpty{
+             Text("The Orgnaization have no Users")
           }
-        }
-      }
-      .onDelete(perform: removeRows)
-    }.searchable(text: $searchingFor)
-      .navigationTitle("Manage Members")
-//      .navigationBarTitleDisplayMode(.inline)
+          else {
+          ForEach(results.indices, id: \.self) { index in
+              if let id = results[index].id {
+                  var userName = "\(results[index].firstName as! String) \(results[index].lastName as! String)"
+                  HStack{
+                  Image(uiImage: imageWith(name: userName)!).resizable().frame(width: 35, height: 35)
+                  Text(userName).foregroundColor(Color("text"))
+                  }
+                  }
+              }
+          }}
+      .searchable(text: $searchingFor)
+      .navigationTitle("Manage Users").navigationBarTitleDisplayMode(.inline)
+      .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-          EditButton()
+            EditButton().foregroundColor(Color("blue"))
         }
-//    .navigationBarHidden(true)
+   // .navigationBarHidden(true)
   }
-  var results : [String] {
-    if searchingFor.isEmpty {
-      return users
-    }else {
-      return users.filter { $0.contains(searchingFor) }
+    var results : [User] {
+
+        if  searchingFor.isEmpty {
+            
+            return dbOrg.orgMembers
+        }else {
+
+            return dbOrg.orgMembers.filter { ($0.firstName?.contains(searchingFor))! as Bool }
+        }
     }
-    }
-  func removeRows(at offsets: IndexSet) {
-    users.remove(atOffsets: offsets)
-  }
+//  func removeRows(at offsets: IndexSet) {
+//    users.remove(atOffsets: offsets)
+//  }
   }
 struct manageMembers_Previews: PreviewProvider {
   static var previews: some View {

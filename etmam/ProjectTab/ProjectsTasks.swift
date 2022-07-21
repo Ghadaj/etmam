@@ -20,6 +20,7 @@ struct ProjectsTasks: View {
     @State var PId = ""
     @State var today = Date()
     @State private var showAddSheet = false
+    @State var fromCalendar = false
     
     var body: some View {
         ZStack{
@@ -33,79 +34,52 @@ struct ProjectsTasks: View {
                     Text("Done").tag("Done")
                 }
                 .pickerStyle(.segmented)
-                .frame(width: 344)
                 .padding([.top, .leading, .trailing])
                 ScrollView{
-                    VStack{
-                        
-                       
-                        
-                        if pickerTaskStatus == "To Do"{
-                            let meeting = toDoMeetings(id: project.id ?? "", m: dbMeetings.meetings)
-                            let tasks = toDoTasks(id: project.id ?? "", t: dbTasks.tasks)
-                            ForEach(meeting.indices, id:\.self){ index in
-                                MakeMeetingCell2(meeting: meeting[index])
-                                
+                          VStack{
+                            HStack{
+                              Button(action: {showAddSheet = true}){
+                                Image(systemName: "plus.circle.fill").foregroundColor(Color("blue")).font(.title3)
+                                  Text("Add".localized).foregroundColor(Color("blue")).font(.title3)
+                              }.padding(.leading)
+                              Spacer()
+                              }
+                            if pickerTaskStatus == "To Do"{
+                              let meeting = toDoMeetings(id: project.id ?? "", m: dbMeetings.meetings)
+                              let tasks = toDoTasks(id: project.id ?? "", t: dbTasks.tasks)
+                              ForEach(meeting.indices, id:\.self){ index in
+                                MakeMeetingCell(meeting: meeting[index])
+                              }
+                              ForEach(tasks.indices, id:\.self){ index in
+                                MakeTaskCell(task: tasks[index])
+                              }
                             }
-                            ForEach(tasks.indices, id:\.self){ index in
-                                MakeTaskCell2(task: tasks[index])
-                                
+                            if pickerTaskStatus == "Doing"{
+                              let tasks = DoingTasks(id: project.id ?? "", t: dbTasks.tasks)
+                              ForEach(tasks.indices, id:\.self){ index in
+                                MakeTaskCell(task: tasks[index])
+                              }
                             }
-                            
-                        }
-                        if pickerTaskStatus == "Doing"{
-                           
-                            let tasks = DoingTasks(id: project.id ?? "", t: dbTasks.tasks)
-                          
-                            ForEach(tasks.indices, id:\.self){ index in
-                                MakeTaskCell2(task: tasks[index])
-                                
+                            if pickerTaskStatus == "Done"{
+                              let meeting = DoneMeetings(id: project.id ?? "", m: dbMeetings.meetings)
+                              let tasks = DoneTasks(id: project.id ?? "", t: dbTasks.tasks)
+                              ForEach(meeting.indices, id:\.self){ index in
+                                MakeMeetingCell(meeting: meeting[index])
+                              }
+                              ForEach(tasks.indices, id:\.self){ index in
+                                MakeTaskCell(task: tasks[index])
+                              }
                             }
-                            
-                        }
-                        
-                        if pickerTaskStatus == "Done"{
-                            let meeting = DoneMeetings(id: project.id ?? "", m: dbMeetings.meetings)
-                            let tasks = DoneTasks(id: project.id ?? "", t: dbTasks.tasks)
-                            ForEach(meeting.indices, id:\.self){ index in
-                                MakeMeetingCell2(meeting: meeting[index])
-                                
-                            }
-                            ForEach(tasks.indices, id:\.self){ index in
-                                MakeTaskCell2(task: tasks[index])
-                                
-                            }
-                            
-                        }
-                        
-                      
-                            
-                    } .sheet(isPresented: $showAddSheet, content: {
-                        AddTaskMeetingSheet(selectedDate: $today,showAddSheet: $showAddSheet, taskProject: PId, taskProjectName: PName, meetingProject: PId, meetingProjectName: PName)
-                    })
-                   
-                    
-            }
+                          }.padding()
+                          .sheet(isPresented: $showAddSheet, content: {
+                            AddTaskMeetingSheet(showAddSheet: $showAddSheet, taskProject: PId, taskProjectName: PName, meetingProject: PId, meetingProjectName: PName)
+                          })
+                      }
+
+
         }
         } .navigationTitle("Tasks")
             .navigationBarTitleDisplayMode(.inline)
-        
-            .toolbar{
-                ToolbarItem(placement: .navigationBarTrailing){
-                    HStack{
-                        Button(action:{showAddSheet = true }){
-                            
-                            Image(systemName: "plus").font(.system(size:15))
-                                .foregroundColor(Color("blue"))
-                            Text("Add").foregroundColor(Color("blue"))
-                            
-                        }
-                       
-                        
-                    }
-                    
-                }
-            }
     
 }
     

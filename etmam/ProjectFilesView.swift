@@ -1,16 +1,21 @@
 import Foundation
 import SwiftUI
 import Firebase
+import FirebaseFirestore
 import FirebaseStorage
 import PDFKit
 struct ProjectFilesView: View {
-  @State var filesUrls : [String]
+  @Binding var filesUrls : [String]
   @State var isShowingFileView: Bool = false
   @State var isShowingPDFView: Bool = false
   @State var selectedUrl: URL?
   @State var editMode: Bool = false
-  @State var newUrls : [URL]
+  @State var newUrls : [URL] = []
+  //var projectFilesview = PDFKitRepresentedView()
+  //  @State var projectID: String
   @State var fileText = ""
+    var urlsAppend : [String] = []
+    let emptyProject = Project(projectName: "nil", projectManager: "nil", projectDeadline: Date.init(), projectMembers: [], projectDesc: "nil", projectAttachments: [], projectColor: "nil", orgID: "nil")
   var body: some View {
     NavigationView{
     ScrollView(.vertical, showsIndicators: false) {
@@ -18,19 +23,24 @@ struct ProjectFilesView: View {
         .padding(.horizontal).padding(.bottom)
         .navigationTitle("Files")
         .onAppear(){
-          Firestore.firestore().collection("Projects").document("IAIA0gx9JIrvsXfpYaGa").getDocument { doucment, error in
-            if let error = error {
-              print("error:\(error.localizedDescription)")
-            } else {
-              if let document = doucment {
-                let data = (document.data()?["files"] as! Array<String>)
-                for i in data{
-                  self.filesUrls.append(i)
-                }
+//          Firestore.firestore().collection("Projects").document(projectID).getDocument { doucment, error in
+//            if let error = error {
+//              print("error:\(error.localizedDescription)")
+//            } else {
+//              if let document = doucment {
+//                  do{
+//                  let project = try document.data(as: Project.self) ?? self.emptyProject
+//                  if !project.projectAttachments!.isEmpty{
+//                          for i in project.projectAttachments!{
+//                  self.filesUrls.append(i)
+//                }
                 newUrls = castUrls(arr: filesUrls)
-              }
-            }
-          }
+//                  }}
+//                catch {
+//                    print ("error")
+//                }
+//            }
+//            }}
         }
         .toolbar {
           ToolbarItem(placement: .primaryAction) {
@@ -126,8 +136,15 @@ struct ProjectFilesView: View {
           case .success(let urls):
             for url in urls {
               newUrls.append(url)
-              uploadFilesToStorage(fileUrlStrings: newUrls)
-            }
+              //  newUrls.append(uploadFilesToStorage(fileUrlStrings: newUrls))
+      
+              uploadFilesToStorage(fileUrlStrings: newUrls){
+                  (success, urls) -> Void in
+                      if success {
+                          filesUrls.append(contentsOf: urls)
+                      }}
+             }
+       
           case .failure(let error):
             print("error while uploading url file, \(error)")
           }
@@ -145,6 +162,8 @@ struct ProjectFilesView: View {
     case "txt":
       return "txt"
     case "doc":
+      return "word"
+    case "docx":
       return "word"
     case "mp3":
       return "audio"
@@ -217,11 +236,66 @@ func castUrls(arr :[String]) -> [URL]{
   for i in arr{
     if let v = URL(string: i){
     urls.append(v)
-    print("url : \(String(describing: v))")
+  //  print("url : \(String(describing: v))")
     }
   }
   return urls
 }
 func deleteFile(){
   // delete from collection and storage
+}
+var Urls: [String] = []
+
+func uploadFilesToStorage(fileUrlStrings: [URL], completion: @escaping (_ success: Bool,_ Urls: [String]) -> Void){
+  // var currentUser = CurrentUser(documents:[""])
+  // guard let userId = UserAuthVM.sharedauthVM.auth.currentUser?.uid
+  //currentUser?.uid
+  // else {return}
+  for fileUrl in fileUrlStrings {
+    let fileName: String = UUID().uuidString
+    // TODO: replace file name with project id
+    let ref = Storage.storage().reference(withPath: "projects" + "/" + fileName + "/" + fileUrl.lastPathComponent)
+    // ref.putFile(from: fileUrl)
+
+    ref.putFile(from: fileUrl) { storageMetadata, error in
+        if let error = error as NSError?{
+           print("Error uploading")
+        }else{
+            print("Before DispatchQueue")
+
+            DispatchQueue.main.async {
+       
+//      if let error = error {
+//        print("DEBUG: error while uploading image \(error)")
+//        return
+//      }
+                print("Before appending")
+      ref.downloadURL { imageUrl, error in
+        if let error = error {
+          print("DEBUG: error while uploading image \(error)")
+          return
+        }
+        guard let fileUtrString = imageUrl?.absoluteString else {return}
+          Urls.append(fileUtrString)
+          print("DEBUG: Successfully uploaded profile \(fileUtrString)")
+          completion(true, Urls)
+        //currentUser.documents.append(fileUtrString)
+        // store file link in collection
+        //try? db.collection("Your collection").document(userId).setData(from: currentUser)
+      }
+//        ref.downloadURL { imageUrl, error in
+//          if let error = error {
+//            print("DEBUG: error while uploading image \(error)")
+//            return
+//          }
+//          guard let fileUtrString = imageUrl?.absoluteString else {return}
+//          print("DEBUG: Successfully uploaded profile \(fileUtrString)")
+//          //currentUser.documents.append(fileUtrString)
+//          // store file link in collection
+//          //try? db.collection("Your collection").document(userId).setData(from: currentUser)
+//
+            }
+            }
+    }
+  }
 }

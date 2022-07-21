@@ -19,7 +19,7 @@ struct notificationTab: View {
                         .font(.largeTitle.bold())
                     Spacer()
                     NavigationLink {
-                        Text("Person View")
+                        UserProfile()
                     } label: {
                         Image(systemName: "person.crop.circle")
                             .font(.largeTitle)

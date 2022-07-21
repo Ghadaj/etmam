@@ -17,6 +17,7 @@ class UserAuthVM: ObservableObject {
     @Published var hasError = false
     @Published var errorMsg = ""
     @Published var resetErrorMsg = ""
+    @Published var userSignedOut = false
     
     init(){
         if auth.currentUser?.uid != nil {
@@ -33,11 +34,11 @@ class UserAuthVM: ObservableObject {
                 self?.hasError = true
                 self?.handelAuthErrors(error:error)
                 
+                
             }else{
                 DispatchQueue.main.async {
                     self?.hasError = false
                     UserAuthVM.sharedauthVM.IsSignedIn = true
-                   
                 }
             }
         }
@@ -62,12 +63,14 @@ class UserAuthVM: ObservableObject {
         }
     }
     
-    
+
     
     // handle user sign out
     func handleSignout (){
         try? auth.signOut()
         self.IsSignedIn = false
+        self.userSignedOut = true
+     
     }
     
     func resetPassword(email: String , completion: @escaping (_ success: Bool) -> Void){

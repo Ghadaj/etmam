@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OrgUsers : View{
     @EnvironmentObject var dbUsers: userDatabaseVM
+    @EnvironmentObject var dbOrgs: orgDatabaseVM
     @EnvironmentObject var dbProjects: projectDatabaseVM
    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -23,7 +24,7 @@ struct OrgUsers : View{
             List {
                 ForEach(results.indices, id: \.self) { index in
                     if let id = results[index].id {
-                        var userName = "\(results[index].firstName) \(results[index].lastName)"
+                        var userName = "\(results[index].firstName as! String) \(results[index].lastName as! String)"
                         MultipleSelectionRow(title: userName ?? "", isSelected: self.selectedUsers.contains(id)) {
                             if self.selectedUsers.contains( id) {
                                 self.selectedUsers.removeAll(where: { $0 == id })
@@ -40,7 +41,7 @@ struct OrgUsers : View{
         
         
         
-        .navigationTitle(navBarTitle == "Add Task" || navBarTitle == "Task" ? "Assignee" : "Members")
+        .navigationTitle(navBarTitle == "Add Task" || navBarTitle == "Task" ? "Assignee" : "Users")
         .toolbar{
        
             ToolbarItem(placement: .confirmationAction){
@@ -61,10 +62,10 @@ struct OrgUsers : View{
     var results : [User] {
         
         if  searchingFor.isEmpty {
-            return dbUsers.users
+            return dbOrgs.orgMembers
         }else {
          //   var userNamer = "\($0.firstName) \($0.lastName)"
-            return dbUsers.users.filter { ($0.firstName!.contains(searchingFor)) as Bool }
+            return dbOrgs.orgMembers.filter { ($0.firstName!.contains(searchingFor)) as Bool }
         }
     }
 
@@ -80,8 +81,8 @@ struct MultipleSelectionRow: View {
         Button(action: self.action) {
             HStack {
                 
-                Image(uiImage: imageWith(name: self.title)!).cornerRadius(20)
-                Text(self.title)
+                Image(uiImage: imageWith(name: self.title)!).resizable().frame(width: 35, height: 35)
+                Text(self.title).foregroundColor(Color("text"))
                 if self.isSelected {
                     Spacer()
                     Image(systemName: "checkmark")
@@ -94,64 +95,49 @@ struct MultipleSelectionRow: View {
 
 struct Projects: View {
     @EnvironmentObject var dbProjects: projectDatabaseVM
+    @EnvironmentObject var dbUsers: userDatabaseVM
     @Binding var selectedProject : String
     @Binding var selectedProjectName : String
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
- 
-    
     var body: some View {
         List{
-            Button(action: {selectedProject = "No project"
-                selectedProjectName = "No project"
-            }) {
-                HStack {
-                    Text("No project").foregroundColor(.black)
-                    if "No project" == selectedProject {
-                        Spacer()
-                        Image(systemName: "checkmark")
-                    }
+               Button(action: {selectedProject = "Personal"
+                 selectedProjectName = "Personal"
+              }) {
+                 HStack {
+                   Text("Personal").foregroundColor(Color("text"))
+                   if "Personal" == selectedProject {
+                     Spacer()
+                     Image(systemName: "checkmark")
+                  }
                 }
-            }
-            
-            ForEach(dbProjects.projects.indices, id:\.self){ index in
-                if let id = dbProjects.projects[index].id{
-                Button(action: {selectedProject = id
-                    selectedProjectName = dbProjects.projects[index].projectName ?? ""
-                }) {
-                    HStack {
-                        Text(dbProjects.projects[index].projectName ?? "").foregroundColor(.black)
-                        if id == selectedProject {
-                            Spacer()
-                            Image(systemName: "checkmark")
-                        }
+              }
+               ForEach(dbUsers.projects.indices, id:\.self){ index in
+                 if let id = dbUsers.projects[index].id{
+                   Button(action: {selectedProject = id
+                     selectedProjectName = dbUsers.projects[index].projectName ?? ""
+                  }) {
+                     HStack {
+                       Text(dbUsers.projects[index].projectName ?? "").foregroundColor(Color("text"))
+                       if id == selectedProject {
+                         Spacer()
+                         Image(systemName: "checkmark")
+                      }
                     }
+                  }
                 }
+              }
             }
-        }
+        .navigationBarTitle("Projects",displayMode: .inline)
     }
-
-
-            .navigationBarTitle("Projects",displayMode: .inline)
-        
-
-    }
-    
-
 }
 
-//
-//struct OrgUsers_Projects_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OrgUsers( selectedUsers: .constant([""]), navBarTitle: .constant(""))
-//    }
-//}
 
 
 func findProjectName(id: String, projects:[Project]) -> String{
   var name = ""
-  if id == "No project"{
-    name = "No project"
+  if id == "Personal"{
+    name = "Personal"
 }
   else{
   for project in projects{

@@ -9,11 +9,12 @@ import SwiftUI
 
 struct projectsTab: View {
     // var project : Project
-   // @EnvironmentObject var dbProjects: projectDatabaseVM
-    @EnvironmentObject var dbProjects: userDatabaseVM
+//    @EnvironmentObject var dbProjects: projectDatabaseVM
     @EnvironmentObject var dbTasks: taskDatabaseVM
     @EnvironmentObject var dbMeetings: meetingDatabaseVM
     @EnvironmentObject var dbUsers: userDatabaseVM
+    @EnvironmentObject var dbOrg: orgDatabaseVM
+
     @State var totalForAll = 0
     @State  var barProgress: Double = 0.0
     private var barPercentage: Int { Int (barProgress * 100.0) }
@@ -33,11 +34,11 @@ struct projectsTab: View {
             ScrollView{
               VStack {
                 HStack {
-                  Text("Projects")
+                    Text("Projects".localized)
                     .font(.largeTitle.bold())
                   Spacer()
                   NavigationLink {
-                    Text("Person View")
+                    UserProfile()
                   } label: {
                     Image(systemName: "person.crop.circle")
                       .font(.largeTitle)
@@ -46,21 +47,21 @@ struct projectsTab: View {
                 }
                 SearchBar(text: $text)
                 Spacer()
-                LazyVGrid(columns: columns, alignment: .center, spacing: 16){
+                LazyVGrid(columns: columns, alignment: .center, spacing: 0){
                   Button{
                       showCreateSheet.toggle()
                   } label:{
                     ZStack{
                       Rectangle()
                         .foregroundColor(Color("tabBarColor"))
-                        .frame(width: 169, height: 186)
+                        .frame(height: 186)
                         .cornerRadius(8)
-                        .shadow(color: .black.opacity(0.15) ,radius: 8, x: 0, y: 1)
+                        .shadow(color: .black.opacity(0.15) ,radius: 4, x: 0, y: 1)
                       VStack{
                         Image(systemName: "plus")
                           .foregroundColor(Color("blue"))
                           .frame(width:32,height: 36)
-                        Text("Create Project")
+                          Text("Create Project".localized)
                           .foregroundColor(Color("blue"))
                       }
                     }
@@ -70,26 +71,38 @@ struct projectsTab: View {
                   } content: {
                     CreateProject(showCreateSheet: $showCreateSheet)
                   }
-                    ForEach(dbProjects.projects.filter({($0.projectName?.lowercased().contains(text.lowercased()))! || text.isEmpty})){ p in
+                    ForEach(dbUsers.projects.filter({($0.projectName?.lowercased().contains(text.lowercased()))! || text.isEmpty})){ p in
                     
                         makeProjectCell(p)
                     
                   }
                   }
               } .padding()
-            }.navigationBarHidden(true)
+            }
+           
+            .navigationBarHidden(true)
           }
         
       }
     
+
+        
+   
+    
+    
+    
+    
     func makeProjectCell(_ p : Project) -> some View{
-      NavigationLink(destination: ProjectCard(project: p, projectName: p.projectName ?? "", projectDesc: p.projectDesc ?? "", members: p.projectMembers ?? [], Deadline: p.projectDeadline ?? Date() )){
+     
+      
+        
+        NavigationLink(destination: ProjectCard(project: p, projectName: p.projectName ?? "", projectAttachments: p.projectAttachments ?? [""], projectDesc: p.projectDesc ?? "", members: p.projectMembers ?? [], Deadline: p.projectDeadline ?? Date() )){
           ZStack{
         Rectangle()
           .foregroundColor(Color("tabBarColor"))
-          .frame(width: 169, height: 186)
+          .frame( height: 186)
           .cornerRadius(8)
-          .shadow(color: .black.opacity(0.05) ,radius: 8, x: -3, y: 0)
+          .shadow(color: .black.opacity(0.15) ,radius: 4, x: -3, y: 0)
         VStack(alignment: .leading){
           VStack(alignment: .leading, spacing: 15){
             Text(p.projectName ?? "")
@@ -108,34 +121,27 @@ struct projectsTab: View {
           }.padding(.top,20)
           Spacer()
           Spacer()
-            membersCapsule(p.projectMembers ?? [""], bigArrayOfUsers: dbUsers.users).padding(.bottom, 5)
+            membersCapsule(p.projectMembers ?? [""], bigArrayOfUsers: dbOrg.orgMembers).padding(.bottom, 5)
         }
         .padding(.trailing,45)
         ZStack{
-          Rectangle().frame(width: 169, height: 39).cornerRadius(8)
+          Rectangle().frame(height: 39).cornerRadius(8)
             .background(RoundedCornersShape(corners: [.bottomLeft, .bottomRight], radius: 15))
             .foregroundColor(Color(p.projectColor ?? "pink"))
           VStack(spacing : 0.8){
               let percentageAndTotal = percentageCalc(id: p.id ?? "", t: dbTasks.tasks, m: dbMeetings.meetings)
             HStack{
-              Text("Status")
-                .font(.system(size: 12, weight: .regular))
-                .foregroundColor(.white)
               Spacer()
                
-               
-         
                     Text("\(Int((percentageAndTotal[0])*100))%").font(.system(size: 16, weight: .regular))
                         .foregroundColor(.white)
-                   
-
-                
+              
                   
             }.padding([.top, .leading, .trailing])
              
-              ProgressView(value: percentageAndTotal[0]).frame(width:131)
+              ProgressView(value: percentageAndTotal[0])
                       .accentColor(.white)
-                      .padding(.bottom)
+                      .padding([.bottom,.horizontal])
 
           
               
@@ -145,6 +151,14 @@ struct projectsTab: View {
       }
     }
 }
+    
+    
+    
+    
+    
+
+
+    
 }
 
 
@@ -153,7 +167,7 @@ struct SearchBar : View {
   @State private var isEditing = false
   var body: some View{
     HStack{
-      TextField("Search", text: $text)
+        TextField("Search".localized, text: $text)
         .padding(5)
         .padding(.horizontal,35)
         .background(Color("tabBarColor"))
@@ -182,7 +196,7 @@ struct SearchBar : View {
           self.isEditing = false
           UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }) {
-          Text("Cancel")
+            Text("Cancel".localized)
         }
         .padding(.trailing,10)
         .transition(.move(edge:.trailing))
@@ -215,8 +229,8 @@ func membersCapsule(_ mem : [String],  bigArrayOfUsers : [User]) -> some View{
       if ( mem.count > 3){
         HStack{
           Text("+\(mem.count-3)")
-            .font(.system(size: 8, weight: .regular))
-            .multilineTextAlignment(.trailing)
+            .font(.system(size: 10, weight: .regular))
+            .multilineTextAlignment(.trailing).foregroundColor(Color("blue"))
         }
       }
     }
@@ -226,6 +240,7 @@ func membersCapsule(_ mem : [String],  bigArrayOfUsers : [User]) -> some View{
 }
 
 
+
 func numOfUsers(users : [String] , bigArrayOfUsers : [User]) -> [String]{
     var newUsers : [String] = []
 
@@ -233,7 +248,7 @@ func numOfUsers(users : [String] , bigArrayOfUsers : [User]) -> [String]{
     for user in users {
         for allUser in bigArrayOfUsers{
             if user == allUser.id{
-                var userName = "\(allUser.firstName) \(allUser.lastName)"
+                var userName = "\(allUser.firstName!) \(allUser.lastName!)"
                 newUsers.append(userName ?? "")
                 break
         }
@@ -252,18 +267,15 @@ func numOfUsers(users : [String] , bigArrayOfUsers : [User]) -> [String]{
 
 
 
-
-
-func  percentageCalc(id:String, t:[Task], m:[Meeting])-> [Double] {
-var per = 0.0
-    let totalForAll = (DoneTasks(id: id,t:t ).count + toDoTasks(id: id, t :t).count + toDoMeetings(id: id ,m:m).count + DoingTasks(id: id,t:t ).count + DoneMeetings(id: id,m:m).count)
-
-
-if totalForAll != 0{
-    per = Double((DoneTasks(id: id,t:t ).count) + (DoneMeetings(id: id, m: m).count) ) / Double(totalForAll)
-}
-return [per,Double(totalForAll)]
-
+func percentageCalc(id:String, t:[Task], m:[Meeting])-> [Double] {
+    var per = 0.0
+    let doneT = DoneTasks(id: id,t:t ).count
+    let doneM = DoneMeetings(id: id,m:m).count
+    let totalForAll = (doneT + toDoTasks(id: id, t :t).count + toDoMeetings(id: id ,m:m).count + DoingTasks(id: id,t:t ).count + doneM)
+    if totalForAll != 0{
+        per = Double(doneT + doneM) / Double(totalForAll)
+    }
+    return [per,Double(totalForAll)]
 }
 
 func toDoMeetings(id : String, m: [Meeting]) -> [Meeting]{

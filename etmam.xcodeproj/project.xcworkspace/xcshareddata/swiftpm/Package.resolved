@@ -32,9 +32,9 @@
         "package": "Firebase",
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk",
         "state": {
-          "branch": null,
-          "revision": "2eb177effe7baf1f13ad0c5f4eb8c71a98429fb5",
-          "version": "9.1.0"
+          "branch": "master",
+          "revision": "61dfd02e33e8264b8604b3ada2ff8c26fc218439",
+          "version": null
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {
           "branch": null,
-          "revision": "192cce3e0486aecfdb61102a9c694c78dc89dc48",
-          "version": "9.1.0"
+          "revision": "f54f60d0164d887e1174fa51ab2efe48a8e9d178",
+          "version": "9.3.0"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/google/gtm-session-fetcher.git",
         "state": {
           "branch": null,
-          "revision": "19605024d59eaefdb1f6a2cb11ebe75df4421126",
-          "version": "2.0.0"
+          "revision": "4e9bbf2808b8fee444e84a48f5f3c12641987d3e",
+          "version": "1.7.2"
         }
       },
       {
@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/google/promises.git",
         "state": {
           "branch": null,
-          "revision": "46c1e6b5ac09d8f82c991061c659f67e573d425d",
-          "version": "2.1.0"
+          "revision": "3e4e743631e86c8c70dbc6efdc7beaa6e90fd3bb",
+          "version": "2.1.1"
         }
       },
       {
@@ -134,6 +134,15 @@
           "branch": null,
           "revision": "1d2b22b0c97dbd5ac9e4cb16020ff5d0f4191760",
           "version": "0.2.2"
+        }
+      },
+      {
+        "package": "WelcomeSheet",
+        "repositoryURL": "https://github.com/MAJKFL/Welcome-Sheet.git",
+        "state": {
+          "branch": "main",
+          "revision": "33d2836eea920b19dba0f82581a1864552eed547",
+          "version": null
         }
       }
     ]
