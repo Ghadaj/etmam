@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "472"
             endingLineNumber = "472"
-            landmarkName = "updateUser(_:_:_:)"
+            landmarkName = "getUserProjects()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

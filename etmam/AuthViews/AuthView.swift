@@ -17,11 +17,12 @@ struct AuthView: View {
 //    SplashView()
     
       if !UserAuth {
-          logoView()
+          Onboarding()
+        //  logoView()
       }
-      if !UserAuth{
-          logoView()
-      }
+//      if !UserAuth{
+//          logoView()
+//      }
       else {
           TabBar().environmentObject(UserAuthVM()).environmentObject(meetingDatabaseVM()).environmentObject(orgDatabaseVM()).environmentObject(projectDatabaseVM()).environmentObject(taskDatabaseVM()).environmentObject(userDatabaseVM())
       }

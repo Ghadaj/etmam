@@ -11,7 +11,6 @@ import WelcomeSheet
 
 struct Onboarding: View {
     @State private var showSheet = true
-    
     let pages = [
         WelcomeSheetPage(title: "Gettign Started in Workaday", rows: [
             WelcomeSheetPageRow(imageSystemName: "person.circle",
@@ -32,16 +31,13 @@ struct Onboarding: View {
             
 
     var body: some View {
-        Button("Show sheet") {
-            showSheet.toggle()
-        }
-        .welcomeSheet(isPresented: $showSheet, onDismiss: { print("Sheet dismissed") }, isSlideToDismissDisabled: true, pages: pages)
+        logoView().welcomeSheet(isPresented: $showSheet, onDismiss: { print("Sheet dismissed") }, isSlideToDismissDisabled: true, pages: pages)
 
     }
 }
 
-struct Onboarding_Previews: PreviewProvider {
-    static var previews: some View {
-        Onboarding()
-    }
-}
+//struct Onboarding_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Onboarding()
+//    }
+//}

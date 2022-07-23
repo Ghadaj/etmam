@@ -4,14 +4,16 @@ import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 import PDFKit
-struct ProjectFilesView: View {
+struct ProjectFilesViewNewProject: View {
   @Binding var filesUrls : [String]
   @State var isShowingFileView: Bool = false
   @State var isShowingPDFView: Bool = false
   @State var selectedUrl: URL?
   @State var editMode: Bool = false
   @State var newUrls : [URL] = []
-  @State var project: Project
+    @State var attachments = [""]
+
+ // @State var project: Project
   @EnvironmentObject var projectVM : projectDatabaseVM
   //var projectFilesview = PDFKitRepresentedView()
   //  @State var projectID: String
@@ -21,7 +23,7 @@ struct ProjectFilesView: View {
   var body: some View {
     NavigationView{
     ScrollView(.vertical, showsIndicators: false) {
-      SearchBar1(text: $fileText)
+      SearchBar2(text: $fileText)
         .padding(.horizontal).padding(.bottom)
         .navigationTitle("Files")
         .onAppear(){
@@ -144,9 +146,7 @@ struct ProjectFilesView: View {
                   (success, urls) -> Void in
                       if success {
                           filesUrls.append(contentsOf: urls)
-                        
-                          projectVM.updateProjectAttachments(project , attachments: filesUrls)
-                        
+                          attachments = filesUrls
                           
                       }}
              }
@@ -194,7 +194,7 @@ struct ProjectFilesView: View {
     }
   }
 }
-struct SearchBar1 : View {
+struct SearchBar2 : View {
   @Binding var text : String
   @State private var isEditing = false
   var body: some View{
@@ -237,71 +237,71 @@ struct SearchBar1 : View {
     }
   }
 }
-func castUrls(arr :[String]) -> [URL]{
-  var urls :[URL] = []
-  for i in arr{
-    if let v = URL(string: i){
-    urls.append(v)
-  //  print("url : \(String(describing: v))")
-    }
-  }
-  return urls
-}
-func deleteFile(){
-  // delete from collection and storage
-}
-var Urls: [String] = []
-
-func uploadFilesToStorage(fileUrlStrings: [URL], completion: @escaping (_ success: Bool,_ Urls: [String]) -> Void){
-  // var currentUser = CurrentUser(documents:[""])
-  // guard let userId = UserAuthVM.sharedauthVM.auth.currentUser?.uid
-  //currentUser?.uid
-  // else {return}
-  for fileUrl in fileUrlStrings {
-    let fileName: String = UUID().uuidString
-    // TODO: replace file name with project id
-    let ref = Storage.storage().reference(withPath: "projects" + "/" + fileName + "/" + fileUrl.lastPathComponent)
-    // ref.putFile(from: fileUrl)
-
-    ref.putFile(from: fileUrl) { storageMetadata, error in
-        if let error = error as NSError?{
-           print("Error uploading")
-        }else{
-            print("Before DispatchQueue")
-
-            DispatchQueue.main.async {
-       
-//      if let error = error {
-//        print("DEBUG: error while uploading image \(error)")
-//        return
-//      }
-                print("Before appending")
-      ref.downloadURL { imageUrl, error in
-        if let error = error {
-          print("DEBUG: error while uploading image \(error)")
-          return
-        }
-        guard let fileUtrString = imageUrl?.absoluteString else {return}
-          Urls.append(fileUtrString)
-          print("DEBUG: Successfully uploaded profile \(fileUtrString)")
-          completion(true, Urls)
-        //currentUser.documents.append(fileUtrString)
-        // store file link in collection
-        //try? db.collection("Your collection").document(userId).setData(from: currentUser)
-      }
-//        ref.downloadURL { imageUrl, error in
-//          if let error = error {
-//            print("DEBUG: error while uploading image \(error)")
-//            return
-//          }
-//          guard let fileUtrString = imageUrl?.absoluteString else {return}
-//          print("DEBUG: Successfully uploaded profile \(fileUtrString)")
-//          //currentUser.documents.append(fileUtrString)
-//          // store file link in collection
-//          //try? db.collection("Your collection").document(userId).setData(from: currentUser)
+//func castUrls(arr :[String]) -> [URL]{
+//  var urls :[URL] = []
+//  for i in arr{
+//    if let v = URL(string: i){
+//    urls.append(v)
+//  //  print("url : \(String(describing: v))")
+//    }
+//  }
+//  return urls
+//}
+//func deleteFile(){
+//  // delete from collection and storage
+//}
+//var Urls: [String] = []
 //
-            }
-            }
-    }
-  }
-}
+//func uploadFilesToStorage(fileUrlStrings: [URL], completion: @escaping (_ success: Bool,_ Urls: [String]) -> Void){
+//  // var currentUser = CurrentUser(documents:[""])
+//  // guard let userId = UserAuthVM.sharedauthVM.auth.currentUser?.uid
+//  //currentUser?.uid
+//  // else {return}
+//  for fileUrl in fileUrlStrings {
+//    let fileName: String = UUID().uuidString
+//    // TODO: replace file name with project id
+//    let ref = Storage.storage().reference(withPath: "projects" + "/" + fileName + "/" + fileUrl.lastPathComponent)
+//    // ref.putFile(from: fileUrl)
+//
+//    ref.putFile(from: fileUrl) { storageMetadata, error in
+//        if let error = error as NSError?{
+//           print("Error uploading")
+//        }else{
+//            print("Before DispatchQueue")
+//
+//            DispatchQueue.main.async {
+//
+////      if let error = error {
+////        print("DEBUG: error while uploading image \(error)")
+////        return
+////      }
+//                print("Before appending")
+//      ref.downloadURL { imageUrl, error in
+//        if let error = error {
+//          print("DEBUG: error while uploading image \(error)")
+//          return
+//        }
+//        guard let fileUtrString = imageUrl?.absoluteString else {return}
+//          Urls.append(fileUtrString)
+//          print("DEBUG: Successfully uploaded profile \(fileUtrString)")
+//          completion(true, Urls)
+//        //currentUser.documents.append(fileUtrString)
+//        // store file link in collection
+//        //try? db.collection("Your collection").document(userId).setData(from: currentUser)
+//      }
+////        ref.downloadURL { imageUrl, error in
+////          if let error = error {
+////            print("DEBUG: error while uploading image \(error)")
+////            return
+////          }
+////          guard let fileUtrString = imageUrl?.absoluteString else {return}
+////          print("DEBUG: Successfully uploaded profile \(fileUtrString)")
+////          //currentUser.documents.append(fileUtrString)
+////          // store file link in collection
+////          //try? db.collection("Your collection").document(userId).setData(from: currentUser)
+////
+//            }
+//            }
+//    }
+//  }
+//}

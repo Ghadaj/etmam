@@ -16,7 +16,7 @@ struct ProjectCard: View {
     @EnvironmentObject var dbUsers: userDatabaseVM
     @EnvironmentObject var dbOrg: orgDatabaseVM
 
-    var project: Project
+    @State var project: Project
     @State var projectName = ""
     @State var projectAttachments : [String]
     @State var projectDesc = ""
@@ -219,7 +219,7 @@ struct ProjectCard: View {
                             
                         }
 //                        NavigationLink(destination: ProjectFilesView(filesUrls: [], newUrls: [], projectID: project.id!)) {
-                        NavigationLink(destination: ProjectFilesView(filesUrls: $projectAttachments )) {
+                        NavigationLink(destination: ProjectFilesView(filesUrls: $projectAttachments, project: project)) {
                         
                             ZStack{
                                 Rectangle().frame( height: 105).foregroundColor(Color("blue")).cornerRadius(8)
@@ -230,7 +230,7 @@ struct ProjectCard: View {
                                     Text("Files".localized)
                                         .fontWeight(.medium)
                                         .foregroundColor(.white)
-                                    Text("\(0)")
+                                    Text("\(projectAttachments.count)")
                                         .foregroundColor(.white)
                                 }
                             }

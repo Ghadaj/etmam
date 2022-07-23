@@ -111,12 +111,25 @@ struct CreateProject: View {
                             
                         }
                     }
-                    HStack{
-                        Image(systemName: "paperclip").foregroundColor(Color("blue"))
-                        Text("Files".localized)
-                        Spacer()
-                        Image(systemName: "plus").foregroundColor(Color("gray"))
+                    
+                    NavigationLink(destination: ProjectFilesViewNewProject(filesUrls: $attachments)) {
+                    
+                                            HStack{
+                                                Image(systemName: "paperclip").foregroundColor(Color("blue"))
+                                                Text("Files".localized)
+                                                Spacer()
+                                                Image(systemName: "plus").foregroundColor(Color("gray"))
+                                            }
+                        
+        
+                        
                     }
+//                    HStack{
+//                        Image(systemName: "paperclip").foregroundColor(Color("blue"))
+//                        Text("Files".localized)
+//                        Spacer()
+//                        Image(systemName: "plus").foregroundColor(Color("gray"))
+//                    }
                     
                 }
                 

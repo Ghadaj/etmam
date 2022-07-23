@@ -30,8 +30,9 @@ class SignUpFormVM: ObservableObject{
     @Published var cancellables =  Set<AnyCancellable>()
     
    //password must contains characters and one special characters and is minimum six char long.
-    let passwordCheck = NSPredicate(format: "SELF MATCHES %@",  "^(?=.*[a-z])(?=.*[$@$#!%*?&]).{6,}$")
-    
+   // let passwordCheck = NSPredicate(format: "SELF MATCHES %@",  "^(?=.*[a-z])(?=.*[$@$#!%*?&]).{6,}$")
+    let passwordCheck = NSPredicate(format: "SELF MATCHES %@",  "^(?=.*[a-z]).{6,}$")
+
     let emailCheck = NSPredicate(format: "SELF MATCHES %@",  "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
     
     private var IsFNameEmptyPublisher: AnyPublisher<Bool, Never>{

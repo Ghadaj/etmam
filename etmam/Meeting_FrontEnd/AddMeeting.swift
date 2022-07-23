@@ -17,7 +17,8 @@ struct AddMeeting: View {
     @State var selectedDate: Date = Date()
     @Binding var showAddSheet: Bool
     @State var isMeetingLinkVisible: Bool = false
-    
+    @State var attachments = [""]
+
 
     @State var startTime = Date()
     @State var endTime = Date()
@@ -157,7 +158,7 @@ struct AddMeeting: View {
                 }
                 
                 
-                
+                NavigationLink(destination: ProjectFilesViewNewProject(filesUrls: $attachments)){
                 HStack{
                     Image(systemName: "paperclip").foregroundColor(Color("blue"))
                     Text("Attachments".localized)
@@ -165,7 +166,7 @@ struct AddMeeting: View {
                     Image(systemName: "plus").foregroundColor(Color("gray"))
                 }
                 
-            
+                }
                 
             }
         }
@@ -175,7 +176,7 @@ struct AddMeeting: View {
             
             Button(action:{
                 if meetingTitle != "" {
-                    dbMeetings.addMeeting(Meeting(meetingTitle: meetingTitle, meetingCreator: dbUsers.currentUserID, meetingMembers: members, meetingProjectId: meetingProject, meetingDate: selectedDate, meetingStartTime: startTime, meetingEndTime: endTime, meetingAttchments: [], meetingRoom: meetingRoom, meetingStatus:"To Do", meetingAgenda: meetingAgenda, mom: [], zoomUrl: meetingLink, meetingOrgID: userVM.currentOrgID))
+                    dbMeetings.addMeeting(Meeting(meetingTitle: meetingTitle, meetingCreator: dbUsers.currentUserID, meetingMembers: members, meetingProjectId: meetingProject, meetingDate: selectedDate, meetingStartTime: startTime, meetingEndTime: endTime, meetingAttchments: attachments, meetingRoom: meetingRoom, meetingStatus:"To Do", meetingAgenda: meetingAgenda, mom: [], zoomUrl: meetingLink, meetingOrgID: userVM.currentOrgID))
                     
                     
                     showAddSheet = false

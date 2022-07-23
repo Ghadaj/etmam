@@ -34,12 +34,14 @@ struct MeetingCard: View {
     @State var meetingProject = ""
     @State var meetingRoom = ""
     @State var meetingProjectName = ""
+    @State var meetingAttachments = [""]
     @State var meetingCreator = ""
     @State private var textHeight: CGFloat = 40
     @State private var maxTextHeight: CGFloat = 10000000
     @State var firstName = ""
     @State var lastName = ""
     @State var user = User(firstName: "nil", lastName: "nil", userJobTitle: "nil", userPhone: "nil", userEmail: "nil", userPermession: 5, userProjects: ["nil"], userTasks: ["nil"], userMeetings: ["nil"], userImage: "nil", userLineManger: "nil", userOrg: "nil")
+    let project = Project(projectName: "nil", projectManager: "nil", projectDeadline: Date.init(), projectMembers: [], projectDesc: "nil", projectAttachments: [], projectColor: "nil", orgID: "nil")
     let columns = Array(repeating: GridItem(.flexible(minimum: 1, maximum: 1), spacing: 35), count: 5)
     @State var showStack = false
     func getLM(){
@@ -260,13 +262,26 @@ struct MeetingCard: View {
                     
                 }
                 
-                HStack{
-                    Image(systemName: "paperclip").foregroundColor(Color("blue"))
-                    Text("Attachments".localized)
-                    Spacer()
-                    Image(systemName: "plus").foregroundColor(Color("gray"))
+              //  NavigationLink(destination: ProjectFilesView(filesUrls: $meetingAttachments, project: project)) {
+                
+                    HStack{
+                        Image(systemName: "paperclip").foregroundColor(Color("blue"))
+                        Text("Attachments".localized)
+                        Spacer()
+                        Image(systemName: "plus").foregroundColor(Color("gray"))
+                    //}
+                    
+                    
+                    
                 }
                 
+//                HStack{
+//                    Image(systemName: "paperclip").foregroundColor(Color("blue"))
+//                    Text("Attachments".localized)
+//                    Spacer()
+//                    Image(systemName: "plus").foregroundColor(Color("gray"))
+//                }
+//
                 
             }
         }

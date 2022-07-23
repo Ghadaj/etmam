@@ -123,12 +123,16 @@ struct SignUpView: View {
             
         }.frame(height:480)
             Button{
+                if (!formVM.Fname.isEmpty && !formVM.Lname.isEmpty && !formVM.email.isEmpty && !formVM.password.isEmpty && !formVM.passwordAgain.isEmpty && !formVM.OrgName.isEmpty){
+                
                 let user = User(firstName: formVM.Fname, lastName: formVM.Lname, userJobTitle: "", userPhone: "", userEmail: formVM.email, userPermession: 0, userProjects: [""], userTasks: [""], userMeetings: [""], userImage: "", userLineManger: "",userOrg: "")
 
                 let org = Orgnization(OrgName: formVM.OrgName , Package:"Package" , OrgOwner: "" ,OrgAdmins: [],OrgUsers: [],lat: coordinates.latitude, lng: coordinates.longitude)
                 CreateUserAndOrg(user: user, password: formVM.password, org: org)
              
                 goAuth()
+            }
+              
             }label: {
                 ZStack{
                 Rectangle()

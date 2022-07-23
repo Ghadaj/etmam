@@ -12,9 +12,17 @@ struct SplashViewForSignIn: View {
     @Binding var isSignedIn : Bool
     @Binding var userSignedOut : Bool
     var body: some View {
-        if isActive || userSignedOut{
+        if isActive  {
+           // Onboarding()
             logoView()
+
+           // logoView()
         }
+        
+//       else if isActive && userSignedOut {
+//           logoView()
+//
+//        }
         else {
             splashAnimation(isActive: $isActive).onAppear{
                 isSignedIn = true
