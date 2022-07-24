@@ -91,78 +91,78 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		67126301285B55DB0097D772 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../testFirebase/testFirebase/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		671263052860B6590097D772 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftUIView.swift; path = etmam/SwiftUIView.swift; sourceTree = SOURCE_ROOT; };
-		6712630A2861F3D00097D772 /* MessageDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDocument.swift; path = etmam/MessageDocument.swift; sourceTree = SOURCE_ROOT; };
+		67126301285B55DB0097D772 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		671263052860B6590097D772 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		6712630A2861F3D00097D772 /* MessageDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
 		6712630E2861F4950097D772 /* SignUpFormVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpFormVM.swift; path = etmam/FormValidators/SignUpFormVM.swift; sourceTree = SOURCE_ROOT; };
 		6712630F2861F4950097D772 /* SignInFormVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInFormVM.swift; path = etmam/FormValidators/SignInFormVM.swift; sourceTree = SOURCE_ROOT; };
-		671263152861F5BD0097D772 /* LocationPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationPickerView.swift; path = etmam/AuthViews/LocationPickerView.swift; sourceTree = SOURCE_ROOT; };
-		671263162861F5BD0097D772 /* ResetPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResetPasswordView.swift; path = etmam/AuthViews/ResetPasswordView.swift; sourceTree = SOURCE_ROOT; };
-		671263172861F5BD0097D772 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = etmam/AuthViews/MapView.swift; sourceTree = SOURCE_ROOT; };
-		671263182861F5BD0097D772 /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInView.swift; path = etmam/AuthViews/SignInView.swift; sourceTree = SOURCE_ROOT; };
-		671263192861F5BD0097D772 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpView.swift; path = etmam/AuthViews/SignUpView.swift; sourceTree = SOURCE_ROOT; };
+		671263152861F5BD0097D772 /* LocationPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
+		671263162861F5BD0097D772 /* ResetPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		671263172861F5BD0097D772 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		671263182861F5BD0097D772 /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		671263192861F5BD0097D772 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		674B7131285A134A006AE2C5 /* Workaday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workaday.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		674B7134285A134A006AE2C5 /* etmamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = etmamApp.swift; path = etmam/etmamApp.swift; sourceTree = SOURCE_ROOT; };
-		674B7136285A134A006AE2C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = etmam/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		674B7134285A134A006AE2C5 /* etmamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = etmamApp.swift; sourceTree = "<group>"; };
+		674B7136285A134A006AE2C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		674B713B285A134A006AE2C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Preview Assets.xcassets"; path = "etmam/Preview Content/Preview Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		674B7168285A1C1C006AE2C5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		674B716B285A1CA9006AE2C5 /* meetingDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = meetingDatabaseVM.swift; path = ../testFirebase/testFirebase/DB_VM/meetingDatabaseVM.swift; sourceTree = SOURCE_ROOT; };
-		674B716C285A1CA9006AE2C5 /* orgDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = orgDatabaseVM.swift; path = ../testFirebase/testFirebase/DB_VM/orgDatabaseVM.swift; sourceTree = SOURCE_ROOT; };
-		674B716E285A1CA9006AE2C5 /* Meeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Meeting.swift; path = ../testFirebase/testFirebase/DB_VM/Models/Meeting.swift; sourceTree = SOURCE_ROOT; };
-		674B716F285A1CA9006AE2C5 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Organization.swift; path = ../testFirebase/testFirebase/DB_VM/Models/Organization.swift; sourceTree = SOURCE_ROOT; };
-		674B7170285A1CA9006AE2C5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../testFirebase/testFirebase/DB_VM/Models/User.swift; sourceTree = SOURCE_ROOT; };
-		674B7171285A1CA9006AE2C5 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = ../testFirebase/testFirebase/DB_VM/Models/Project.swift; sourceTree = SOURCE_ROOT; };
-		674B7172285A1CA9006AE2C5 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = ../testFirebase/testFirebase/DB_VM/Models/Task.swift; sourceTree = SOURCE_ROOT; };
-		674B7173285A1CA9006AE2C5 /* projectDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = projectDatabaseVM.swift; path = ../testFirebase/testFirebase/DB_VM/projectDatabaseVM.swift; sourceTree = SOURCE_ROOT; };
-		674B7174285A1CA9006AE2C5 /* taskDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = taskDatabaseVM.swift; path = ../testFirebase/testFirebase/DB_VM/taskDatabaseVM.swift; sourceTree = SOURCE_ROOT; };
-		674B7175285A1CA9006AE2C5 /* userDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = userDatabaseVM.swift; path = ../testFirebase/testFirebase/DB_VM/userDatabaseVM.swift; sourceTree = SOURCE_ROOT; };
+		674B716B285A1CA9006AE2C5 /* meetingDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = meetingDatabaseVM.swift; sourceTree = "<group>"; };
+		674B716C285A1CA9006AE2C5 /* orgDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = orgDatabaseVM.swift; sourceTree = "<group>"; };
+		674B716E285A1CA9006AE2C5 /* Meeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
+		674B716F285A1CA9006AE2C5 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		674B7170285A1CA9006AE2C5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		674B7171285A1CA9006AE2C5 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		674B7172285A1CA9006AE2C5 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		674B7173285A1CA9006AE2C5 /* projectDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = projectDatabaseVM.swift; sourceTree = "<group>"; };
+		674B7174285A1CA9006AE2C5 /* taskDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskDatabaseVM.swift; sourceTree = "<group>"; };
+		674B7175285A1CA9006AE2C5 /* userDatabaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userDatabaseVM.swift; sourceTree = "<group>"; };
 		674B71B9285A1FDE006AE2C5 /* Configuration.storekit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Configuration.storekit; path = "etmam/Preview Content/Configuration.storekit"; sourceTree = SOURCE_ROOT; };
-		674B71BB285A1FFA006AE2C5 /* StoreKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreKitManager.swift; path = etmam/StoreKit_VM/StoreKitManager.swift; sourceTree = SOURCE_ROOT; };
-		674B71C0285A2142006AE2C5 /* emailNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = emailNotifications.swift; path = etmam/emailNotifications.swift; sourceTree = SOURCE_ROOT; };
-		674B71C2285A218A006AE2C5 /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Subscriptions.swift; path = etmam/StoreKit_VM/Subscriptions.swift; sourceTree = SOURCE_ROOT; };
-		674B71C6285A24C4006AE2C5 /* TasksProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksProjectView.swift; path = etmam/Task_FrontEnd/TasksProjectView.swift; sourceTree = SOURCE_ROOT; };
-		674B71C7285A24C4006AE2C5 /* ProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectView.swift; path = etmam/ProjectTab/ProjectView.swift; sourceTree = SOURCE_ROOT; };
-		6752769428834DD800048098 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = SOURCE_ROOT; };
-		6758CCFD28659D8700C34582 /* CheckInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CheckInView.swift; path = etmam/CheckInView.swift; sourceTree = SOURCE_ROOT; };
+		674B71BB285A1FFA006AE2C5 /* StoreKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
+		674B71C0285A2142006AE2C5 /* emailNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emailNotifications.swift; sourceTree = "<group>"; };
+		674B71C2285A218A006AE2C5 /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
+		674B71C6285A24C4006AE2C5 /* TasksProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksProjectView.swift; sourceTree = "<group>"; };
+		674B71C7285A24C4006AE2C5 /* ProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+		6752769428834DD800048098 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		6758CCFD28659D8700C34582 /* CheckInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInView.swift; sourceTree = "<group>"; };
 		67CB64F5288C4E5900F1A5D0 /* ProjectFileViewNewProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFileViewNewProject.swift; sourceTree = "<group>"; };
-		67CD046F287AE11600CB649E /* OtherUsersProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OtherUsersProfile.swift; path = etmam/Profile/OtherUsersProfile.swift; sourceTree = SOURCE_ROOT; };
-		67CD0470287AE11600CB649E /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfile.swift; path = etmam/Profile/UserProfile.swift; sourceTree = SOURCE_ROOT; };
-		67CD0473287AE1DE00CB649E /* SwipeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeableView.swift; path = etmam/Task_FrontEnd/SwipeableView.swift; sourceTree = SOURCE_ROOT; };
-		67CD0475287AE2FA00CB649E /* SplashViewForSignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewForSignIn.swift; path = etmam/AuthViews/SplashViewForSignIn.swift; sourceTree = SOURCE_ROOT; };
-		67CD0476287AE2FA00CB649E /* logoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = logoView.swift; path = etmam/AuthViews/logoView.swift; sourceTree = SOURCE_ROOT; };
-		67CD0477287AE2FA00CB649E /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashView.swift; path = etmam/AuthViews/SplashView.swift; sourceTree = SOURCE_ROOT; };
-		67CD047B287AE65300CB649E /* profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = profile.swift; path = etmam/profile.swift; sourceTree = SOURCE_ROOT; };
-		67CD047D287AE86900CB649E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../Downloads/etmam-4/etmam/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
-		67E15458286C786D006A257C /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBar.swift; path = etmam/TabBar.swift; sourceTree = SOURCE_ROOT; };
-		67E1545A286C7882006A257C /* OrgUsers_Projects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrgUsers_Projects.swift; path = etmam/OrgUsers_Projects.swift; sourceTree = SOURCE_ROOT; };
-		67E1545F286C7894006A257C /* MakeTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeTaskCell.swift; path = etmam/Task_FrontEnd/MakeTaskCell.swift; sourceTree = SOURCE_ROOT; };
-		67E15460286C7894006A257C /* AddTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTask.swift; path = etmam/Task_FrontEnd/AddTask.swift; sourceTree = SOURCE_ROOT; };
-		67E15461286C7894006A257C /* TaskCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCard.swift; path = etmam/Task_FrontEnd/TaskCard.swift; sourceTree = SOURCE_ROOT; };
-		67E15462286C7894006A257C /* calendarTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = calendarTab.swift; path = etmam/CalendarTab/calendarTab.swift; sourceTree = SOURCE_ROOT; };
-		67E15464286C7894006A257C /* MeetingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeetingCard.swift; path = etmam/Meeting_FrontEnd/MeetingCard.swift; sourceTree = SOURCE_ROOT; };
-		67E15465286C7894006A257C /* MakeMeetingCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeMeetingCell2.swift; path = etmam/Meeting_FrontEnd/MakeMeetingCell2.swift; sourceTree = SOURCE_ROOT; };
-		67E15466286C7894006A257C /* MakeMeetingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeMeetingCell.swift; path = etmam/Meeting_FrontEnd/MakeMeetingCell.swift; sourceTree = SOURCE_ROOT; };
-		67E15467286C7894006A257C /* AddMeeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddMeeting.swift; path = etmam/Meeting_FrontEnd/AddMeeting.swift; sourceTree = SOURCE_ROOT; };
-		67E15469286C7894006A257C /* ProjectsTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsTasks.swift; path = etmam/ProjectTab/ProjectsTasks.swift; sourceTree = SOURCE_ROOT; };
-		67E1546A286C7894006A257C /* projectsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = projectsTab.swift; path = etmam/ProjectTab/projectsTab.swift; sourceTree = SOURCE_ROOT; };
-		67E1546B286C7894006A257C /* ProjectCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectCard.swift; path = etmam/ProjectTab/ProjectCard.swift; sourceTree = SOURCE_ROOT; };
-		67E1546C286C7894006A257C /* CreateProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateProject.swift; path = etmam/ProjectTab/CreateProject.swift; sourceTree = SOURCE_ROOT; };
+		67CD046F287AE11600CB649E /* OtherUsersProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUsersProfile.swift; sourceTree = "<group>"; };
+		67CD0470287AE11600CB649E /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		67CD0473287AE1DE00CB649E /* SwipeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeableView.swift; sourceTree = "<group>"; };
+		67CD0475287AE2FA00CB649E /* SplashViewForSignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewForSignIn.swift; sourceTree = "<group>"; };
+		67CD0476287AE2FA00CB649E /* logoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoView.swift; sourceTree = "<group>"; };
+		67CD0477287AE2FA00CB649E /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		67CD047B287AE65300CB649E /* profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
+		67CD047D287AE86900CB649E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../Downloads/etmam-4/etmam/Assets.xcassets"; sourceTree = "<group>"; };
+		67E15458286C786D006A257C /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		67E1545A286C7882006A257C /* OrgUsers_Projects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrgUsers_Projects.swift; sourceTree = "<group>"; };
+		67E1545F286C7894006A257C /* MakeTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeTaskCell.swift; sourceTree = "<group>"; };
+		67E15460286C7894006A257C /* AddTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTask.swift; sourceTree = "<group>"; };
+		67E15461286C7894006A257C /* TaskCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCard.swift; sourceTree = "<group>"; };
+		67E15462286C7894006A257C /* calendarTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendarTab.swift; sourceTree = "<group>"; };
+		67E15464286C7894006A257C /* MeetingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingCard.swift; sourceTree = "<group>"; };
+		67E15465286C7894006A257C /* MakeMeetingCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMeetingCell2.swift; sourceTree = "<group>"; };
+		67E15466286C7894006A257C /* MakeMeetingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMeetingCell.swift; sourceTree = "<group>"; };
+		67E15467286C7894006A257C /* AddMeeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMeeting.swift; sourceTree = "<group>"; };
+		67E15469286C7894006A257C /* ProjectsTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsTasks.swift; sourceTree = "<group>"; };
+		67E1546A286C7894006A257C /* projectsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = projectsTab.swift; sourceTree = "<group>"; };
+		67E1546B286C7894006A257C /* ProjectCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCard.swift; sourceTree = "<group>"; };
+		67E1546C286C7894006A257C /* CreateProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProject.swift; sourceTree = "<group>"; };
 		67E1546E286C7894006A257C /* manageMembers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = manageMembers.swift; path = etmam/TodayTab/manageMembers.swift; sourceTree = SOURCE_ROOT; };
 		67E1546F286C7894006A257C /* ImportSheetApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportSheetApp.swift; path = etmam/TodayTab/ImportSheetApp.swift; sourceTree = SOURCE_ROOT; };
 		67E15470286C7894006A257C /* CSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSVDocument.swift; path = etmam/TodayTab/CSVDocument.swift; sourceTree = SOURCE_ROOT; };
 		67E15471286C7894006A257C /* Today.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Today.swift; path = etmam/TodayTab/Today.swift; sourceTree = SOURCE_ROOT; };
-		67E15473286C7894006A257C /* InitialsPicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialsPicture.swift; path = etmam/Extensions/InitialsPicture.swift; sourceTree = SOURCE_ROOT; };
-		67E15474286C7894006A257C /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextView.swift; path = etmam/Extensions/TextView.swift; sourceTree = SOURCE_ROOT; };
-		67E15476286C7894006A257C /* notificationTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = notificationTab.swift; path = etmam/NotificationTab/notificationTab.swift; sourceTree = SOURCE_ROOT; };
-		67E1548B286C7EA6006A257C /* cardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = cardCell.swift; path = etmam/cardCell.swift; sourceTree = SOURCE_ROOT; };
-		67E1548D286C7FD0006A257C /* ProjectFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProjectFilesView.swift; path = etmam/ProjectFilesView.swift; sourceTree = SOURCE_ROOT; };
-		67E1548F286C8142006A257C /* PDFFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PDFFileView.swift; path = etmam/PDFFileView.swift; sourceTree = SOURCE_ROOT; };
-		67E15491286C8BA9006A257C /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthView.swift; path = etmam/AuthViews/AuthView.swift; sourceTree = SOURCE_ROOT; };
-		67E15493286C8F70006A257C /* UserAuthVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAuthVM.swift; path = etmam/AuthViews/UserAuthVM.swift; sourceTree = SOURCE_ROOT; };
+		67E15473286C7894006A257C /* InitialsPicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialsPicture.swift; sourceTree = "<group>"; };
+		67E15474286C7894006A257C /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		67E15476286C7894006A257C /* notificationTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notificationTab.swift; sourceTree = "<group>"; };
+		67E1548B286C7EA6006A257C /* cardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cardCell.swift; sourceTree = "<group>"; };
+		67E1548D286C7FD0006A257C /* ProjectFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFilesView.swift; sourceTree = "<group>"; };
+		67E1548F286C8142006A257C /* PDFFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFFileView.swift; sourceTree = "<group>"; };
+		67E15491286C8BA9006A257C /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		67E15493286C8F70006A257C /* UserAuthVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthVM.swift; sourceTree = "<group>"; };
 		67E1549C286DE81C006A257C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		67E1549E286DE820006A257C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		67F98656287DEEA200D22FF3 /* OtherUsersProfile2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OtherUsersProfile2.swift; path = etmam/Profile/OtherUsersProfile2.swift; sourceTree = SOURCE_ROOT; };
-		67F98658287E1B3C00D22FF3 /* personalTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = personalTasks.swift; path = etmam/Profile/personalTasks.swift; sourceTree = SOURCE_ROOT; };
+		67F98656287DEEA200D22FF3 /* OtherUsersProfile2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersProfile2.swift; sourceTree = "<group>"; };
+		67F98658287E1B3C00D22FF3 /* personalTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = personalTasks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,9 +194,8 @@
 				6712630E2861F4950097D772 /* SignUpFormVM.swift */,
 				6712630F2861F4950097D772 /* SignInFormVM.swift */,
 			);
-			name = FormValidators;
-			path = etmam/FormValidators;
-			sourceTree = SOURCE_ROOT;
+			path = FormValidators;
+			sourceTree = "<group>";
 		};
 		671263142861F5BD0097D772 /* AuthViews */ = {
 			isa = PBXGroup;
@@ -212,9 +211,8 @@
 				67CD0477287AE2FA00CB649E /* SplashView.swift */,
 				67CD0475287AE2FA00CB649E /* SplashViewForSignIn.swift */,
 			);
-			name = AuthViews;
-			path = etmam/AuthViews;
-			sourceTree = SOURCE_ROOT;
+			path = AuthViews;
+			sourceTree = "<group>";
 		};
 		674B7128285A134A006AE2C5 = {
 			isa = PBXGroup;
@@ -267,7 +265,7 @@
 				67CD047B287AE65300CB649E /* profile.swift */,
 			);
 			path = etmam;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
 		674B713A285A134A006AE2C5 /* Preview Content */ = {
 			isa = PBXGroup;
@@ -299,8 +297,8 @@
 				674B7175285A1CA9006AE2C5 /* userDatabaseVM.swift */,
 			);
 			name = DB_VM;
-			path = ../testFirebase/testFirebase/DB_VM;
-			sourceTree = SOURCE_ROOT;
+			path = ../../testFirebase/testFirebase/DB_VM;
+			sourceTree = "<group>";
 		};
 		674B716D285A1CA9006AE2C5 /* Models */ = {
 			isa = PBXGroup;
@@ -311,9 +309,8 @@
 				674B7171285A1CA9006AE2C5 /* Project.swift */,
 				674B7172285A1CA9006AE2C5 /* Task.swift */,
 			);
-			name = Models;
-			path = ../testFirebase/testFirebase/DB_VM/Models;
-			sourceTree = SOURCE_ROOT;
+			path = Models;
+			sourceTree = "<group>";
 		};
 		674B71BD285A2030006AE2C5 /* StoreKit_VM */ = {
 			isa = PBXGroup;
@@ -321,9 +318,8 @@
 				674B71BB285A1FFA006AE2C5 /* StoreKitManager.swift */,
 				674B71C2285A218A006AE2C5 /* Subscriptions.swift */,
 			);
-			name = StoreKit_VM;
-			path = etmam/StoreKit_VM;
-			sourceTree = SOURCE_ROOT;
+			path = StoreKit_VM;
+			sourceTree = "<group>";
 		};
 		67CD046E287AE11600CB649E /* Profile */ = {
 			isa = PBXGroup;
@@ -333,18 +329,16 @@
 				67CD0470287AE11600CB649E /* UserProfile.swift */,
 				67F98656287DEEA200D22FF3 /* OtherUsersProfile2.swift */,
 			);
-			name = Profile;
-			path = etmam/Profile;
-			sourceTree = SOURCE_ROOT;
+			path = Profile;
+			sourceTree = "<group>";
 		};
 		67E1545C286C7894006A257C /* CalendarTab */ = {
 			isa = PBXGroup;
 			children = (
 				67E15462286C7894006A257C /* calendarTab.swift */,
 			);
-			name = CalendarTab;
-			path = etmam/CalendarTab;
-			sourceTree = SOURCE_ROOT;
+			path = CalendarTab;
+			sourceTree = "<group>";
 		};
 		67E1545D286C7894006A257C /* Task_FrontEnd */ = {
 			isa = PBXGroup;
@@ -366,9 +360,8 @@
 				67E15466286C7894006A257C /* MakeMeetingCell.swift */,
 				67E15467286C7894006A257C /* AddMeeting.swift */,
 			);
-			name = Meeting_FrontEnd;
-			path = etmam/Meeting_FrontEnd;
-			sourceTree = SOURCE_ROOT;
+			path = Meeting_FrontEnd;
+			sourceTree = "<group>";
 		};
 		67E15468286C7894006A257C /* ProjectTab */ = {
 			isa = PBXGroup;
@@ -379,9 +372,8 @@
 				67E1546B286C7894006A257C /* ProjectCard.swift */,
 				67E1546C286C7894006A257C /* CreateProject.swift */,
 			);
-			name = ProjectTab;
-			path = etmam/ProjectTab;
-			sourceTree = SOURCE_ROOT;
+			path = ProjectTab;
+			sourceTree = "<group>";
 		};
 		67E1546D286C7894006A257C /* TodayTab */ = {
 			isa = PBXGroup;
@@ -391,9 +383,8 @@
 				67E15470286C7894006A257C /* CSVDocument.swift */,
 				67E15471286C7894006A257C /* Today.swift */,
 			);
-			name = TodayTab;
-			path = etmam/TodayTab;
-			sourceTree = SOURCE_ROOT;
+			path = TodayTab;
+			sourceTree = "<group>";
 		};
 		67E15472286C7894006A257C /* Extensions */ = {
 			isa = PBXGroup;
@@ -401,18 +392,16 @@
 				67E15473286C7894006A257C /* InitialsPicture.swift */,
 				67E15474286C7894006A257C /* TextView.swift */,
 			);
-			name = Extensions;
-			path = etmam/Extensions;
-			sourceTree = SOURCE_ROOT;
+			path = Extensions;
+			sourceTree = "<group>";
 		};
 		67E15475286C7894006A257C /* NotificationTab */ = {
 			isa = PBXGroup;
 			children = (
 				67E15476286C7894006A257C /* notificationTab.swift */,
 			);
-			name = NotificationTab;
-			path = etmam/NotificationTab;
-			sourceTree = SOURCE_ROOT;
+			path = NotificationTab;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -585,7 +574,7 @@
 				67E1549E286DE820006A257C /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
